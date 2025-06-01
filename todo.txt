@@ -1,0 +1,14 @@
+
+wifi dongle test with xbox controller
+
+text_to_speech incorporation
+
+what are new actions 
+
+keybinds for new actions
+
+get picture to include both bot doing action and before action needs to be done
+
+reef locations memorize program both image to texy and text to image
+
+extra images for things like pickup (and extra angles for things like placing levels)

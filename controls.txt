@@ -1,0 +1,82 @@
+Sudhir method: thumbs on joysticks, pointer finger for bumper and trigger, middle and index for back paddle , (no pinky)
+
+How to do??? 
+    pyramid L1                              :
+    barge score(both raise and let go),     :
+    manual vs auto l1 (and relati0on to hamburg/hotdog ),                      :
+    hot_dog l1,                             :
+    processor,                              :
+    manual eject (coral and algea?)         :
+
+    right stick presss do something ?
+    any other buttons do someething?
+    algea ground same as coral ground? 
+    pick up from station? 
+    default state of automatic scoring?      
+    How level score to algea?               
+
+
+Joysticks:
+    left joystick: field-oriented x-y 
+    
+    right joystick: robot oriented turning
+
+    press left joystick for change in auto align to either angle or pose ( don't know what default is, can't remember, look at leds)
+
+    press right: ???
+
+
+Bumpers: 
+    Left bumper: left L4
+
+    Right bumper: right L4
+
+
+Triggers:
+    Left Trigger: left l3  when holding coral, algea pick up from reef when not holding ocral
+
+    Right Trigger: right l3 when holding coral, ground pick up when not holding coral
+
+
+TOP Back paddle:
+    left paddle: left l2
+
+    right paddle: right l2
+
+BOTTOM back paddle:
+    left paddle: left l1
+
+    right paddle: right l1
+
+
+
+Specific Actions how to:
+
+    Left_L1
+
+    Right_L1
+
+    
+
+
+
+
+-------------------------------------
+
+LED meanings:
+    
+
+Drive Coaching:
+ 
+    in 2025 not much is said by drive coach for pickup, depends on game for degense, strat handles the plan and driver executes.
+
+
+Tips and tricks: 
+
+    Rotation auto is rapid long travel, pose is for quick repeatable 
+
+    hold button 
+
+    don't lower intak eon game piece
+
+    you have to kind of launch the algea into barge

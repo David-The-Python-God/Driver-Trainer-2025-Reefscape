@@ -1,0 +1,55 @@
+David 5/29/2025
+Average time spent on correct decision = 1.1674976821215648
+Percentage of actions correct = 0.9298245614035088
+
+Correct actions dict:
+switch_auto_scoring_method           19
+left_l4                              14
+pick_up_algea_from_reef              14
+climb                                13
+right_l4                             13
+right_l3                             12
+pick_up_coral_from_ground            12
+left_l3                              9
+
+Incorrect actions dict:
+left_l4                              2
+switch_auto_scoring_method           2
+right_l3                             2
+pick_up_algea_from_reef              1
+left_l3                              1
+
+
+
+
+david 6/1/25 - added voice, xbox controller working but not implemented yet
+Average time spent on correct decision = 1.1316122162726618
+Percentage of actions correct = 0.9393939393939394
+
+Correct actions dict:
+right_l3                             6
+switch_auto_scoring_method           6
+left_l4                              5
+pick_up_algea_from_reef              3
+left_l3                              3
+right_l4                             3
+pick_up_coral_from_ground            3
+climb                                2
+
+Incorrect actions dict:
+left_l3                              1
+climb                                1
+
+success rate for pick_up_algea_from_reef =     1.0
+success rate for left_l4 =                     1.0
+success rate for right_l3 =                    1.0
+success rate for right_l4 =                    1.0
+success rate for pick_up_coral_from_ground =   1.0
+success rate for switch_auto_scoring_method =  1.0
+success rate for left_l3 =                     0.75
+success rate for climb =                       0.6666666666666666
+SESSION END 
+
+
+
+
