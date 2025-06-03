@@ -1,12 +1,13 @@
 import random, time, math
 import keyboard
-from methods.config import actions_list, codes_for_actions_dict, show_correct, show_false, key_actions, absolute_actions, non_holding_actions, trigger_actions, moving_action_codes
+from methods.config import actions_list, codes_for_actions_dict, show_correct, show_false, show_wait_longer, hold_time_for_actions_dict, non_holding_actions, trigger_actions, moving_action_codes
+from methods.config import joystick_dead_band_used, trigger_dead_band_used
 from inputs import get_gamepad
 
 from methods.text_to_control import text_to_control
-from methods.image_to_control import show_image
 from methods.voice_to_control import voice_to_control
-
+from methods.photo_to_control import show_photo
+from methods.inputs_test import gamepad_you_there_question_mark
 
 time_list = []
 correct_counter = 0
@@ -15,16 +16,8 @@ incorrect_counter = 0
 correct_actions_dict = {}
 incorrect_actions_dict = {}
 
-logitech_trigger_deadband = 255 # this is completely maxed out
-logitech_joystick_deadband = 1000 # just below 10% of full trigger
-
-xbox_trigger_deadband = 175  # this is because the trigger is set to not go all the way down (full down is 255 like logitech)
-xbox_joystick_deadband = 2000   #around 6% deadband: xbox range is about 3x logitech 32k and very sensitive
-
-joystick_dead_band_used = logitech_joystick_deadband
-trigger_dead_band_used = logitech_trigger_deadband
-
 def main(hold_time_range, wait_time_range):
+
     global time_list, correct_counter, incorrect_counter, correct_actions_dict, incorrect_actions_dict
     running = True
     while running:
@@ -32,14 +25,13 @@ def main(hold_time_range, wait_time_range):
         
 
         if random.randint(0,2) == 0:
-            l = show_image(action)
+            l = show_photo(action)
             action_done = l[0]
             time_before = l[1]
-            show_image("reset") # prob don't do anything
+            show_photo("reset") # prob don't do anything
 
         else:
             if random.randint(0, 1) == 0:
-
                 text_to_control(action)
 
             else:
@@ -50,7 +42,7 @@ def main(hold_time_range, wait_time_range):
 
             time_before = time.time()
 
-
+            events = []
             while action_done == None:  # wait for the user to press the button
                 events = []
                 events = get_gamepad()  # listner function, but not in background?
@@ -68,7 +60,7 @@ def main(hold_time_range, wait_time_range):
                                 action_done = event.code
                                 break
                     
-
+        events = []
         time_spent = time.time() - time_before
         print("time_spent:", time_spent)       
             
@@ -76,18 +68,47 @@ def main(hold_time_range, wait_time_range):
         if action_done.lower() == codes_for_actions_dict.get(action):
 
             if action not in non_holding_actions:
-                time.sleep(random.uniform(hold_time_range[0], hold_time_range[1]))
+                specialized_wait_range = hold_time_for_actions_dict.get(action, [0, 0])
+                time.sleep(random.uniform(specialized_wait_range[0], specialized_wait_range[1]))    
+
+                """ below code segment is to check if buttons till press but events is only changes in state, 
+                have to use pygame for chekcing inputs or be continuously chekcking whilst waiting"""
+                # action_done = None
+                # for event in events:    # goes through ALL events recorded
+
+                #     if (event.ev_type == "Absolute" or event.ev_type == "Key") and event.state !=0:
+                        
+                #         event_code = event.code.lower()
+                #         if not (event_code in moving_action_codes and event.state < joystick_dead_band_used):  # filter out minor joystick movements
+                        
+                #             if (event_code in trigger_actions and event.state >= trigger_dead_band_used) or (event_code not in trigger_actions): # so triggers must be fully pressed
+
+                #                 print(f"Event detected: {event.ev_type} - {event_code} - {event.state}")
+                #                 action_done = event.code
+                #                 break
+                
+                # if action_done == codes_for_actions_dict.get(action):
+                #     show_correct()
+                #     correct_counter += 1
+                #     correct_actions_dict[action] = correct_actions_dict.get(action, 0) + 1  # second value in .get is the default
+                #     time_list.append(time_spent)
+                
+                # else:
+                #     print("YOU DID NOT WAIT LONG ENOUGH")
+                #     show_wait_longer()
+                #     incorrect_counter += 1
+                #     incorrect_actions_dict[action] = incorrect_actions_dict.get(action, 0) + 1
                 
                 print("\033[1;34mLET GO OF THE KEY NOW\033[0m")     
 
-        
+            
             show_correct()
             correct_counter += 1
             correct_actions_dict[action] = correct_actions_dict.get(action, 0) + 1  # second value in .get is the default
             time_list.append(time_spent)
 
         else:
-            print("Correct action was:", codes_for_actions_dict.get(action))
+            print(f"Correct action for {action} was:", codes_for_actions_dict.get(action))
             show_false()
             incorrect_counter += 1
             incorrect_actions_dict[action] = incorrect_actions_dict.get(action, 0) + 1
@@ -175,6 +196,7 @@ def stats(filename = "session_stats.txt"):
 
 if __name__ == "__main__":
     while True:
+        # gamepad_you_there_question_mark()
 
         filename = input("Enter the filename to save stats (default: session_stats.txt): ")
         if not filename:
@@ -182,7 +204,7 @@ if __name__ == "__main__":
         elif filename.lower() == "g" or filename.lower() == "guest":
             filename = "guest_stats.txt"
 
-        main([1, 2.6], [0.75, 1.5]) # time randge for holdign button and witing for action respectively
+        main([1, 1.7], [0.75, 1.5]) # defualt time randge for holdign button and waiting for action respectively (holding derived from sudhir practice match coral)
         
         # if input("wanna save stats?").lower() == "y":
         stats(filename)

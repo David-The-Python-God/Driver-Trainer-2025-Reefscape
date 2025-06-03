@@ -1,14 +1,21 @@
+sudhir:
+    what are new actions 
 
-wifi dongle test with xbox controller
+    keybinds for new actions
 
-text_to_speech incorporation
+    catogorize actions
 
-what are new actions 
+    custom wait times for new actions
 
-keybinds for new actions
 
-get picture to include both bot doing action and before action needs to be done
+get more pictures for both categories
+
+extra pictures for things like pickup (and extra angles for things like placing levels)
+
+pictures random select program for those that have extras in a category 
 
 reef locations memorize program both image to texy and text to image
 
-extra images for things like pickup (and extra angles for things like placing levels)
+make each file modular (if __name__= "__main__" type shit so each file can be run independintly)
+
+led meanigns incorporation?

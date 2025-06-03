@@ -5,6 +5,7 @@ import os, sys, ctypes
 import time
 from inputs import get_gamepad
 import random
+
 if __name__ == "__main__":
     from config import trigger_actions, moving_action_codes, codes_for_actions_dict, actions_list, non_holding_actions
 else:
@@ -15,7 +16,7 @@ def voice_to_control(action):
     action = action.replace("_", " ")
 
     engine = pyttsx3.init()
-    engine.setProperty('rate', random.randint(150, 250))     
+    engine.setProperty('rate', random.randint(150, 250))     # randomness so you don't get used to a tempo
     engine.setProperty('volume', random.uniform(0.8, 1.2))   
 
     engine.say(action)

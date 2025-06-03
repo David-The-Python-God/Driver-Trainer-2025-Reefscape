@@ -8,7 +8,7 @@ if __name__ == "__main__":
 else:
     from methods.config import trigger_actions, moving_action_codes, codes_for_actions_dict, actions_list, non_holding_actions
 
-def show_image(action):
+def show_image(action):  # NOT BEING SUPPORTED
 
     if action == "reset":
         action_done = None

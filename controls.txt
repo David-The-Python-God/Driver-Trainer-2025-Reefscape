@@ -1,19 +1,21 @@
 Sudhir method: thumbs on joysticks, pointer finger for bumper and trigger, middle and index for back paddle , (no pinky)
 
 How to do??? 
-    pyramid L1                              :
-    barge score(both raise and let go),     :
-    manual vs auto l1 (and relati0on to hamburg/hotdog ),                      :
-    hot_dog l1,                             :
-    processor,                              :
-    manual eject (coral and algea?)         :
-
-    right stick presss do something ?
-    any other buttons do someething?
-    algea ground same as coral ground? 
-    pick up from station? 
-    default state of automatic scoring?      
-    How level score to algea?               
+    How to do pyramid L1 (on both sides)?
+    How to Barge Score once holding algea? (any L4)?
+    what key picks up in horizontal L1 if right trigger holds the coral in hotdog?
+    How to score Processor?
+    How do you manualy eject (coral and algea)?
+    How do you ground pick up algea if right trigger is coral pickup and left trigger is reef algea pickup?
+    
+    Is hotdog/straight l1 just the normal coral pickup and presing lower back paddle? (does it auto align or is it completely manual?)
+    is there a manual horizontal L1 if lower backpaddle is horizontal auto-align L1?
+    I know left stick press changes the auto align method, but does right stick presss do something?
+    Is angle-based the default auto align method coming out of auto?
+    Is there a pick up from station keybind in teleop?
+    What is the combo for scoring a coral on the level and (without going down) picking up the algea of the reef there? (Is it level score and then jam left trigger?)
+    Do the 2 buttons in the middle of the controller do anything?
+        
 
 
 Joysticks:
@@ -77,6 +79,6 @@ Tips and tricks:
 
     hold button 
 
-    don't lower intak eon game piece
+    don't lower intake ontop of game piece like thor
 
     you have to kind of launch the algea into barge
