@@ -15,6 +15,7 @@ incorrect_counter = 0
 
 correct_actions_dict = {}
 incorrect_actions_dict = {}
+time_per_action_dict = {}
 
 def main(hold_time_range, wait_time_range):
 
@@ -37,7 +38,6 @@ def main(hold_time_range, wait_time_range):
             else:
                 voice_to_control(action)
 
-
             action_done = None
 
             time_before = time.time()
@@ -45,20 +45,36 @@ def main(hold_time_range, wait_time_range):
             events = []
             while action_done == None:  # wait for the user to press the button
                 events = []
-                events = get_gamepad()  # listner function, but not in background?
+                try:
+                    events = get_gamepad()  # listner function, but not in background?
 
-                for event in events:    # goes through ALL events recorded
+                except Exception:
+                    print("game pad disconnected")
+                    return
 
-                    if (event.ev_type == "Absolute" or event.ev_type == "Key") and event.state !=0:
+                # for event in events:    # goes through ALL events recorded
+
+                event = events[-1] # saves on latency but doesn't actually remove prior thngs
+                if (event.ev_type == "Absolute" or event.ev_type == "Key") and event.state !=0:
+                    
+                    event_code = event.code.lower()
+                    if not (event_code in moving_action_codes and event.state < joystick_dead_band_used) or (event_code in trigger_actions and event.state >= trigger_dead_band_used):  # filter out minor joystick movements
                         
-                        event_code = event.code.lower()
-                        if not (event_code in moving_action_codes and event.state < joystick_dead_band_used):  # filter out minor joystick movements
-                        
-                            if (event_code in trigger_actions and event.state >= trigger_dead_band_used) or (event_code not in trigger_actions): # so triggers must be fully pressed
+                        if event_code in moving_action_codes :
+                            print("you moved joystick to far whilst going for another action")
+                            time.sleep(0.1)
 
-                                print(f"Event detected: {event.ev_type} - {event_code} - {event.state}")
-                                action_done = event.code
-                                break
+                        else:  
+                            print(f"Event detected: {event.ev_type} - {event_code} - {event.state}")
+                            action_done = event.code
+                            
+                            events = [] # hopefully to clear of old events but that is not how gamepad works anyway so....
+
+                            break
+
+                    
+                
+
                     
         events = []
         time_spent = time.time() - time_before
@@ -105,6 +121,7 @@ def main(hold_time_range, wait_time_range):
             show_correct()
             correct_counter += 1
             correct_actions_dict[action] = correct_actions_dict.get(action, 0) + 1  # second value in .get is the default
+            time_per_action_dict[action] = time_per_action_dict.get(action, 0) + time_spent
             time_list.append(time_spent)
 
         else:
@@ -163,10 +180,20 @@ def stats(filename = "session_stats.txt"):
         
         file.write("\n")
 
+        file.write("Average time per correct action dict: \n")
+        print("time per action:")
+        for action in time_per_action_dict.keys():
+            time_per_action = time_per_action_dict.get(action, 0) / correct_actions_dict.get(action)
+            file.write(f"{action} = {' ' * (35 - len(action))} {time_per_action} \n")
 
+        file.write("\n")
+
+        file.write("Sucess rate for actions dict:")
+        print("success rate for actions dict:")
         success_rate_dict = {}
         # Get a union of all actions
         all_actions = set(correct_actions_dict.keys()) | set(incorrect_actions_dict.keys())
+        
 
         for action in all_actions:
             correct = correct_actions_dict.get(action, 0)

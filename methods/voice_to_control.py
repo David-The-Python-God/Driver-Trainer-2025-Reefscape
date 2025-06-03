@@ -16,7 +16,7 @@ def voice_to_control(action):
     action = action.replace("_", " ")
 
     engine = pyttsx3.init()
-    engine.setProperty('rate', random.randint(150, 250))     # randomness so you don't get used to a tempo
+    engine.setProperty('rate', random.randint(120, 230))     # randomness so you don't get used to a tempo???
     engine.setProperty('volume', random.uniform(0.8, 1.2))   
 
     engine.say(action)

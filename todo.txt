@@ -19,3 +19,7 @@ reef locations memorize program both image to texy and text to image
 make each file modular (if __name__= "__main__" type shit so each file can be run independintly)
 
 led meanigns incorporation?
+
+fiz inputs getting stuck with soft ignore or looking only at most recent eveent - still dont really work
+
+put voice on sepereate thread so you can press buttons normally

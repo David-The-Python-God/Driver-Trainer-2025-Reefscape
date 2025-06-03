@@ -53,3 +53,50 @@ SESSION END
 
 
 
+David 6/2/2025
+Average time spent on correct decision = 1.183236693081103
+Percentage of actions correct = 0.8444444444444444
+
+Correct actions dict:
+climb                                14
+pick_up_coral_from_ground            13
+right_l1                             13
+left_l1                              12
+right_l4                             12
+left_l4                              11
+right_l2                             9
+pick_up_algea_from_reef              9
+left_l2                              8
+switch_auto_scoring_method           5
+right_l3                             5
+left_l3                              3
+
+Incorrect actions dict:
+switch_auto_scoring_method           5
+climb                                3
+right_l3                             2
+pick_up_coral_from_ground            2
+pick_up_algea_from_reef              2
+left_l3                              2
+left_l4                              1
+right_l1                             1
+right_l2                             1
+right_l4                             1
+left_l2                              1
+
+success rate for left_l1 =                     1.0
+success rate for right_l1 =                    0.9285714285714286
+success rate for right_l4 =                    0.9230769230769231
+success rate for left_l4 =                     0.9166666666666666
+success rate for right_l2 =                    0.9
+success rate for left_l2 =                     0.8888888888888888
+success rate for pick_up_coral_from_ground =   0.8666666666666667
+success rate for climb =                       0.8235294117647058
+success rate for pick_up_algea_from_reef =     0.8181818181818182
+success rate for right_l3 =                    0.7142857142857143
+success rate for left_l3 =                     0.6
+success rate for switch_auto_scoring_method =  0.5
+SESSION END 
+
+
+
