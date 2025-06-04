@@ -25,7 +25,7 @@ def main(hold_time_range, wait_time_range):
         action = (random.choice(actions_list)).lower()
         
 
-        if random.randint(0,2) == 0:
+        if random.randint(0,5) >= 2:
             l = show_photo(action)
             action_done = l[0]
             time_before = l[1]
@@ -58,34 +58,39 @@ def main(hold_time_range, wait_time_range):
                 if (event.ev_type == "Absolute" or event.ev_type == "Key") and event.state !=0:
                     
                     event_code = event.code.lower()
-                    if not (event_code in moving_action_codes and event.state < joystick_dead_band_used) or (event_code in trigger_actions and event.state >= trigger_dead_band_used):  # filter out minor joystick movements
+                    if not (event_code in moving_action_codes and event.state <= joystick_dead_band_used):  # filter out minor joystick movements
                         
-                        if event_code in moving_action_codes :
-                            print("you moved joystick to far whilst going for another action")
-                            time.sleep(0.1)
+                        if not (event_code in trigger_actions and event.state <= trigger_dead_band_used):
+                            if event_code in moving_action_codes :
+                                print("you moved joystick to far whilst going for another action")
+                                time.sleep(0.1)
 
-                        else:  
-                            print(f"Event detected: {event.ev_type} - {event_code} - {event.state}")
-                            action_done = event.code
-                            
-                            events = [] # hopefully to clear of old events but that is not how gamepad works anyway so....
+                            else:  
+                                print(f"Event detected: {event.ev_type} - {event_code} - {event.state}")
+                                action_done = event.code
+                                
+                                events = [] # hopefully to clear of old events but that is not how gamepad works anyway so....
 
-                            break
+                                break
 
                     
-                
+        
 
                     
         events = []
         time_spent = time.time() - time_before
         print("time_spent:", time_spent)       
+
+        for _ in range(10):
+            get_gamepad()  # flush any queued input
+            time.sleep(0.01)
             
 
         if action_done.lower() == codes_for_actions_dict.get(action):
 
             if action not in non_holding_actions:
                 specialized_wait_range = hold_time_for_actions_dict.get(action, [0, 0])
-                time.sleep(random.uniform(specialized_wait_range[0], specialized_wait_range[1]))    
+                time.sleep(random.uniform(specialized_wait_range[0] -0.1, specialized_wait_range[1] -0.1))    
 
                 """ below code segment is to check if buttons till press but events is only changes in state, 
                 have to use pygame for chekcing inputs or be continuously chekcking whilst waiting"""

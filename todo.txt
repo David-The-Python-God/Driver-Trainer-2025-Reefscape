@@ -1,11 +1,12 @@
 sudhir:
-    what are new actions 
+    questions in config
 
-    keybinds for new actions
 
-    catogorize actions
+catogorize new actions
 
-    custom wait times for new actions
+decide keybidns for new actions
+
+wait times for new actions
 
 
 get more pictures for both categories

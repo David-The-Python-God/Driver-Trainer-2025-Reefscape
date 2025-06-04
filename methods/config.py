@@ -1,25 +1,118 @@
-""" ones that aren't keyd to my controler yet:   
-        'left_l1', 'right_l1', ( a lot to differentiate in here for level 1)
-        processor,
-            pyramid L1, 
-            barge score(both raise and let go), 
-            manual vs auto l1 (and relation to hamburger/hotdog)
-            pick up from station, 
-            manual eject (coral and algea)
-            hot_dog l1,                             
-           
-    what key picks up in horizontal L1 if right trigger holds the coral in hotdog?
-    How do you ground pick up algea if right trigger is coral pickup and left trigger is reef algea pickup?
-    
-    Is hotdog/straight l1 just the normal coral pickup and presing lower back paddle? (does it auto align or is it completely manual?)
-    is there a manual horizontal L1 if lower backpaddle is horizontal auto-align L1?
-    I know left stick press changes the auto align method, but does right stick presss do something?
-    Is angle-based the default auto align method coming out of auto?
-    Is there a pick up from station keybind in teleop?
-    What is the combo for scoring a coral on the level and (without going down) picking up the algea of the reef there? (Is it level score and then jam left trigger?)
-    Do the 2 buttons in the middle of the controller do anything?
+""" Further Questions:
+    Processor does not use auto align right?
+    Do you need to hold trigger for processor position? Hold trigger then press OR hold the other trigger to score?
+    Does intaking algea off of reef through l4/l2 when you do the bumper and right stick at the same time will intake without level score?
+
+    Move algea to net then score is hold one bumper then also press the other bumper at the same time to shoot?
+
+    L1_Base and L1_Top auto aligned? Difference between the front and back Horizontal L1?
+    Difference between manual_L1 and and L1_manual_align?
 """
 
+""" Changes from Codebase"""
+
+#What is switch value changed?
+
+
+# Non-State based buttons and combos:
+    #Left Stick press = change auto align     (default seems to be rotation but not sure if that is defualt coming from auto)
+    # Home button = zeroe arm
+    # Right POV   = arm up for set up:
+    # Down POV is default state
+    
+    #Combos:
+        # Left bumper and Right Stick at the same time is score left L4 and then intake algea from reef (on false goes back to default state) #  (DOES INTAKE_ALGEA_OFF_REEF auto to side of reef or does level+Right_stick matter?)
+
+        # A + Right Stick is left L2 and then intake algea from reef
+
+        # Right Bumper and Right Stick  is score right L4 and then intake algea from reef
+
+        #Right B + Right Stick is score right L2 and then intake algea from reef
+
+        #Both lower backpaddles is MANUAL_L!
+
+
+#STATED:
+    #States order:
+        # WantedSuperState hasStraightCoralCondition,
+        # WantedSuperState hasHorizontalCoralCondition,
+        # WantedSuperState hasAlgaeCondition,
+        # WantedSuperState noPieceCondition
+
+    #L Bumper
+        # Superstructure.WantedSuperState.SCORE_LEFT_L4,
+        # Superstructure.WantedSuperState.SCORE_L1_LEFT_TOP,
+        # Superstructure.WantedSuperState.MOVE_ALGAE_TO_NET_POSITION,
+        # Superstructure.WantedSuperState.INTAKE_ALGAE_FROM_GROUND)) 
+
+    #L Trigger
+        # Superstructure.WantedSuperState.SCORE_LEFT_L3,
+        # Superstructure.WantedSuperState.SCORE_L1_LEFT_TOP,
+        # Superstructure.WantedSuperState.MOVE_ALGAE_TO_PROCESSOR_POSITION,                                      # is moving algea to processor_position scoring also (same question for Barge)
+        # Superstructure.WantedSuperState.INTAKE_ALGAE_FROM_REEF))
+
+    #A (prob left L2):
+        # Superstructure.WantedSuperState.SCORE_LEFT_L2,
+        # Superstructure.WantedSuperState.SCORE_L1_LEFT_BASE,
+        # Superstructure.WantedSuperState.DEFAULT_STATE,
+        # Superstructure.WantedSuperState.INTAKE_ALGAE_FROM_MARK))
+    
+    #X (prob left L1):
+        # Superstructure.WantedSuperState.SCORE_L1_MANUAL_ALIGN,
+        # Superstructure.WantedSuperState.SCORE_L1_MANUAL_ALIGN,
+        # Superstructure.WantedSuperState.DEFAULT_STATE,
+        # Superstructure.WantedSuperState.INTAKE_ALGAE_FROM_HP))
+
+    #Right Bumper:
+        # Superstructure.WantedSuperState.SCORE_RIGHT_L4,
+        # Superstructure.WantedSuperState.SCORE_L1_RIGHT_TOP,
+        # Superstructure.WantedSuperState.MOVE_ALGAE_TO_NET_POSITION,
+        # Superstructure.WantedSuperState.INTAKE_CORAL_FROM_GROUND_HORIZONTALLY))
+
+    # Right Trigger:
+        # Superstructure.WantedSuperState.SCORE_RIGHT_L3,
+        # Superstructure.WantedSuperState.SCORE_L1_RIGHT_TOP,
+        # Superstructure.WantedSuperState.MOVE_ALGAE_TO_PROCESSOR_POSITION,
+        # Superstructure.WantedSuperState.INTAKE_CORAL_FROM_GROUND))
+
+    #Right L2 (B):
+        # Superstructure.WantedSuperState.SCORE_RIGHT_L2,
+        # Superstructure.WantedSuperState.SCORE_L1_RIGHT_BASE,
+        # Superstructure.WantedSuperState.DEFAULT_STATE,
+        # Superstructure.WantedSuperState.INTAKE_CORAL_FROM_STATION_STRAIGHT))
+
+    #Right L1 (Y):
+        # .onTrue(superstructure.setStateCommand(Superstructure.WantedSuperState.SCORE_L1_MANUAL_ALIGN))
+
+
+    
+# multiple Stated Combos:
+    #LEFT AND RIGHT BUMPER:
+        # Superstructure.WantedSuperState.MANUAL_L4,
+        # Superstructure.WantedSuperState.MANUAL_L1,
+        # Superstructure.WantedSuperState.SCORE_ALGAE_IN_NET,
+        # Superstructure.WantedSuperState.DEFAULT_STATE))
+    
+    #LEFT and RIGHT TRIGGER:
+                #         superstructure.setStateCommand(Superstructure.WantedSuperState.SCORE_ALGAE_IN_PROCESSOR),
+                #         superstructure.setStateCommand(Superstructure.WantedSuperState.MANUAL_L3), intakeSubsystem::hasAlgae))
+                # .onFalse(superstructure.setStateCommand(Superstructure.WantedSuperState.DEFAULT_STATE));
+
+    # Both TOp backpaddles:
+        # Superstructure.WantedSuperState.MANUAL_L2,
+        # Superstructure.WantedSuperState.MANUAL_L1,
+        # Superstructure.WantedSuperState.DEFAULT_STATE,
+        # Superstructure.WantedSuperState.DEFAULT_STATE))
+
+# Extras:
+    #controller.back().onTrue(new InstantCommand(swerveSubsystem::resetRotationBasedOnAlliance));
+
+    #controller.start().onTrue(superstructure.setStateCommand(Superstructure.WantedSuperState.HOME));
+
+
+
+
+                
 logitech_trigger_deadband = 255 # this is completely maxed out
 logitech_joystick_deadband = 1000 # just below 10% of full trigger
 
