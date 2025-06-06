@@ -1,6 +1,6 @@
 import random, time, math
 import keyboard
-from methods.config import actions_list, codes_for_actions_dict, show_correct, show_false, show_wait_longer, hold_time_for_actions_dict, non_holding_actions, trigger_actions, moving_action_codes
+from methods.config import actions_list, codes_for_actions_dict, show_correct, show_false, show_wait_longer, hold_time_for_actions_dict, non_holding_actions, trigger_actions, moving_action_codes, succeding_actions_dict
 from methods.config import joystick_dead_band_used, trigger_dead_band_used
 from inputs import get_gamepad
 
@@ -25,11 +25,14 @@ def main(hold_time_range, wait_time_range):
         action = (random.choice(actions_list)).lower()
         
 
-        if random.randint(0,5) >= 2:
+        if random.randint(0,5) >= 3:
             l = show_photo(action)
-            action_done = l[0]
-            time_before = l[1]
-            show_photo("reset") # prob don't do anything
+            if l:
+                action_done = l[0]
+                time_before = l[1]
+                show_photo("reset") # prob don't do anything
+            else:
+                continue
 
         else:
             if random.randint(0, 1) == 0:
@@ -81,16 +84,81 @@ def main(hold_time_range, wait_time_range):
         time_spent = time.time() - time_before
         print("time_spent:", time_spent)       
 
-        for _ in range(10):
-            get_gamepad()  # flush any queued input
-            time.sleep(0.01)
+        # for _ in range(10):
+        #     get_gamepad()  # flush any queued input
+        #     time.sleep(0.01)
             
 
         if action_done.lower() == codes_for_actions_dict.get(action):
 
             if action not in non_holding_actions:
                 specialized_wait_range = hold_time_for_actions_dict.get(action, [0, 0])
-                time.sleep(random.uniform(specialized_wait_range[0] -0.1, specialized_wait_range[1] -0.1))    
+                time.sleep(random.uniform(specialized_wait_range[0], specialized_wait_range[1]))    
+                show_correct()
+
+                if action in succeding_actions_dict.keys():
+                    print("\033[1;34mWAITING FOR KEY PRESS THAT COMPLETES ACTION\033[0m")  
+
+                    time_before = time.time()
+                    action_done = None
+                    while action_done == None:  # wait for the user to press the button
+                        events = []
+                        try:
+                            events = get_gamepad()  # listner function, but not in background?
+
+                        except Exception:
+                            print("game pad disconnected")
+                            return
+
+                        # for event in events:    # goes through ALL events recorded
+
+                        event = events[-1] # saves on latency but doesn't actually remove prior thngs
+                        if (event.ev_type == "Absolute" or event.ev_type == "Key") and event.state !=0:
+                            
+                            event_code = event.code.lower()
+                            if not (event_code in moving_action_codes and event.state <= joystick_dead_band_used):  # filter out minor joystick movements
+                                
+                                if not (event_code in trigger_actions and event.state <= trigger_dead_band_used):
+                                    if event_code in moving_action_codes:
+                                        print("you moved joystick to far whilst going for another action")
+                                        time.sleep(0.1)
+
+                                    elif not (event_code == 'abs_rz'):   # because trigger amount fluctuates when at half-press mode so you don't want to accidentally trigger wrong tirgger
+                                        print(f"Suceeding event detected: {event.ev_type} - {event_code} - {event.state}")
+                                        action_done = event.code
+                                        
+                                        events = [] # hopefully to clear of old events but that is not how gamepad works anyway so....
+
+                                        break
+                    
+                    time_spent = time.time() - time_before
+                    print("time_spent:", time_spent)       
+
+                    succeding_action = succeding_actions_dict.get(action)
+                    if action_done.lower() == codes_for_actions_dict.get(succeding_action):
+                        specialized_wait_range = hold_time_for_actions_dict.get(action, [0, 0])
+                        time.sleep(random.uniform(specialized_wait_range[0], specialized_wait_range[1]))
+                        print("\033[1;34mCORRECT SUCCEDING ACTION\033[0m")
+                        correct_counter += 1
+                        correct_actions_dict[succeding_action] = correct_actions_dict.get(succeding_action, 0) + 1  # second value in .get is the default
+                        time_per_action_dict[succeding_action] = time_per_action_dict.get(succeding_action, 0) + time_spent
+                        time_list.append(time_spent)
+                    
+                    else:
+                        print("\033[31mINCORRECT SUCCEDING ACTION BUT CORRECT PRECEEDING ACTION\033[0m")
+                        print(f"Correct action for {succeding_action} was:", codes_for_actions_dict.get(succeding_action))
+                        incorrect_counter += 1
+                        incorrect_actions_dict[succeding_action] = incorrect_actions_dict.get(succeding_action, 0) + 1
+
+
+                else:
+                    correct_counter += 1
+                    correct_actions_dict[action] = correct_actions_dict.get(action, 0) + 1  # second value in .get is the default
+                    time_per_action_dict[action] = time_per_action_dict.get(action, 0) + time_spent
+                    time_list.append(time_spent)
+
+
+
 
                 """ below code segment is to check if buttons till press but events is only changes in state, 
                 have to use pygame for chekcing inputs or be continuously chekcking whilst waiting"""
@@ -120,14 +188,15 @@ def main(hold_time_range, wait_time_range):
                 #     incorrect_counter += 1
                 #     incorrect_actions_dict[action] = incorrect_actions_dict.get(action, 0) + 1
                 
-                print("\033[1;34mLET GO OF THE KEY NOW\033[0m")     
+                print("\033[1;34mLET GO OF THE KEY NOW\033[0m", '\n\n-------------------------------------------------------------------\n') 
 
-            
-            show_correct()
-            correct_counter += 1
-            correct_actions_dict[action] = correct_actions_dict.get(action, 0) + 1  # second value in .get is the default
-            time_per_action_dict[action] = time_per_action_dict.get(action, 0) + time_spent
-            time_list.append(time_spent)
+            else:
+                show_correct()
+                print('\n-------------------------------------------------------------------\n')
+                correct_counter += 1
+                correct_actions_dict[action] = correct_actions_dict.get(action, 0) + 1  # second value in .get is the default
+                time_per_action_dict[action] = time_per_action_dict.get(action, 0) + time_spent
+                time_list.append(time_spent)
 
         else:
             print(f"Correct action for {action} was:", codes_for_actions_dict.get(action))
@@ -140,6 +209,8 @@ def main(hold_time_range, wait_time_range):
 
         if keyboard.is_pressed('esc'):
              running = False
+
+
 
 
 
@@ -187,13 +258,21 @@ def stats(filename = "session_stats.txt"):
 
         file.write("Average time per correct action dict: \n")
         print("time per action:")
-        for action in time_per_action_dict.keys():
-            time_per_action = time_per_action_dict.get(action, 0) / correct_actions_dict.get(action)
+        action_avg_times = [
+            (action, time_per_action_dict.get(action, 0) / correct_actions_dict.get(action))
+            for action in time_per_action_dict
+        ]
+
+        # Sort the list in descending order by average time
+        action_avg_times.sort(key=lambda x: x[1], reverse=True)
+
+        # Write the sorted values
+        for action, time_per_action in action_avg_times:
             file.write(f"{action} = {' ' * (35 - len(action))} {time_per_action} \n")
 
         file.write("\n")
 
-        file.write("Sucess rate for actions dict:")
+        file.write("Sucess rate for actions dict:\n")
         print("success rate for actions dict:")
         success_rate_dict = {}
         # Get a union of all actions
@@ -219,9 +298,9 @@ def stats(filename = "session_stats.txt"):
         )
         
         for action in sorted_actions:
-            spaces = " " * (26 - len(action[0]))
-            print("success rate for", action[0], "=", spaces, action[1])
-            file.write(f"success rate for {action[0]} = {spaces} {action[1]}\n")
+            spaces = " " * (35 - len(action[0]))
+            print(action[0], "=", spaces, action[1])
+            file.write(f"{action[0]} = {spaces} {action[1]}\n")
     
         file.write("SESSION END \n\n\n\n\n")
 

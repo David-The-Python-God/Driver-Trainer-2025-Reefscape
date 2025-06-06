@@ -24,3 +24,5 @@ led meanigns incorporation?
 fiz inputs getting stuck with soft ignore or looking only at most recent eveent - still dont really work
 
 put voice on sepereate thread so you can press buttons normally
+
+add actions in order? (like intake, position, score)

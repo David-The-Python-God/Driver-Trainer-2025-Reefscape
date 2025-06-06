@@ -83,25 +83,37 @@ def show_photo(action):
         print("\033[1;34mIMAGE_IS_BEING_SHOWN\033[0m")
 
         action_done = None
+
         time_before = time.time()
+
+        events = []
         while action_done == None:  # wait for the user to press the button
-                events = []
+            events = []
+            try:
                 events = get_gamepad()  # listner function, but not in background?
 
-                for event in events:    # goes through ALL events recorded
+            except Exception:
+                print("game pad disconnected")
+                return
 
-                    if (event.ev_type == "Absolute" or event.ev_type == "Key") and event.state !=0:
-                        
-                        event_code = event.code.lower()
-                        if not (event_code in moving_action_codes and event.state < joystick_dead_band_used):  # filter out minor joystick movements
-                        
-                            if (event_code in trigger_actions and event.state >= trigger_dead_band_used) or (event_code not in trigger_actions): # so triggers must be fully pressed
+            # for event in events:    # goes through ALL events recorded
 
-                                print(f"Event detected: {event.ev_type} - {event_code} - {event.state}")
-                                pygame.quit()
-                                return([event.code, time_before])
+            event = events[-1] # saves on latency but doesn't actually remove prior thngs
+            if (event.ev_type == "Absolute" or event.ev_type == "Key") and event.state !=0:
+                
+                event_code = event.code.lower()
+                if not (event_code in moving_action_codes and event.state <= joystick_dead_band_used):  # filter out minor joystick movements
                     
-                time.sleep(0.01) # prevent high CPU usage
+                    if not (event_code in trigger_actions and event.state <= trigger_dead_band_used):
+                        if event_code in moving_action_codes :
+                            print("you moved joystick to far whilst going for another action")
+                            time.sleep(0.1)
+
+                        else:  
+                            print(f"Event detected: {event.ev_type} - {event_code} - {event.state}")
+                            pygame.quit()
+                            return([event.code, time_before])
+        
 
 
 if __name__ == "__main__":
