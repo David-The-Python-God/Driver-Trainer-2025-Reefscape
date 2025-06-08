@@ -11,8 +11,6 @@ trigger_dead_band_used = xbox_trigger_deadband
 
 """
 Acions need to add:
-    TEST manual L1s (should be one lower backpaddle to manualize and then another to score it)
-
     manual ejects l4-l2 (this is just right+left of that level on the controller)
  """
 
