@@ -2,6 +2,7 @@ from config import reef_locations_list, show_false, show_correct, training_list
 from photo_of_reef_pole_to_letter import display_photo, display_photo_false
 import random, time, math, os, sys, keyboard
 
+
 time_list = []
 correct_counter = 0
 incorrect_counter = 0
