@@ -635,3 +635,106 @@ SESSION END
 
 
 
+david late night practice/evaluation  6/7/25                      #problem in eval: code doesn't log combo yet, I am bad at pyramid and L3 and slow to levels and intaking which should be practice more
+Average time spent on correct decision = 1.0219459927306984
+Percentage of actions correct = 0.9464285714285714
+
+Correct actions dict:
+left_l4                              13
+left_pyramid_l1                      13
+exit_climb                           12
+slow_drivetrain_whilst_climbing      12
+left_l3                              11
+intake_coral_from_ground_straight    10
+intake_coral_from_station_straight   10
+right_l1_base                        9
+left_l1_base                         9
+right_l2                             9
+score_in_processor                   9
+switch_auto_scoring_method           9
+right_l4                             8
+prematch_check                       8
+intake_algea_from_human_player       8
+zeroe_arm                            8
+intake_coral_from_ground_horizontal  7
+intake_algea_from_mark               7
+left_l2                              7
+right_l3                             7
+intake_algea_from_ground             7
+score_manual_l1                      6
+intake_algea_from_reef               5
+right_pyramid_l1                     5
+score_in_net                         3
+
+Incorrect actions dict:
+right_pyramid_l1                     3
+prematch_check                       1
+score_left_l4_and_intake_algea       1
+right_l3                             1
+left_pyramid_l1                      1
+left_l1_base                         1
+score_right_l4_and_intake_algea      1
+intake_algea_from_reef               1
+intake_algea_from_human_player       1
+switch_auto_scoring_method           1
+
+Average time per correct action dict: 
+right_l2 =                             1.8571118513743083 
+right_pyramid_l1 =                     1.7990899562835694 
+intake_algea_from_reef =               1.4696771621704101 
+intake_algea_from_ground =             1.3727853979383196 
+left_l1_base =                         1.3393306997087266 
+left_l3 =                              1.3181702873923562 
+prematch_check =                       1.2079735696315765 
+left_l4 =                              1.185181030860314 
+left_l2 =                              1.1541248730250768 
+right_l4 =                             1.1501902043819427 
+zeroe_arm =                            1.1133989095687866 
+intake_algea_from_mark =               1.0933566434042794 
+intake_algea_from_human_player =       1.0699937641620636 
+left_pyramid_l1 =                      1.035530658868643 
+exit_climb =                           1.0274692575136821 
+intake_coral_from_ground_straight =    0.9149455785751343 
+intake_coral_from_ground_horizontal =  0.8544436182294574 
+intake_coral_from_station_straight =   0.8355841636657715 
+switch_auto_scoring_method =           0.7720271746317545 
+slow_drivetrain_whilst_climbing =      0.7419113715489706 
+right_l1_base =                        0.6640166176689996 
+right_l3 =                             0.5963644640786308 
+score_in_net =                         0.32692885398864746 
+score_manual_l1 =                      0.3038408358891805 
+score_in_processor =                   0.20839328236050075 
+
+Sucess rate for actions dict:
+intake_coral_from_ground_straight =    1.0
+intake_coral_from_station_straight =   1.0
+score_in_processor =                   1.0
+intake_algea_from_mark =               1.0
+exit_climb =                           1.0     
+right_l1_base =                        1.0
+left_l3 =                              1.0
+intake_algea_from_ground =             1.0
+slow_drivetrain_whilst_climbing =      1.0
+zeroe_arm =                            1.0
+right_l4 =                             1.0
+left_l4 =                              1.0
+score_in_net =                         1.0
+right_l2 =                             1.0
+intake_coral_from_ground_horizontal =  1.0
+score_manual_l1 =                      1.0
+left_l2 =                              1.0
+left_pyramid_l1 =                      0.9285714285714286
+left_l1_base =                         0.9
+switch_auto_scoring_method =           0.9
+intake_algea_from_human_player =       0.8888888888888888
+prematch_check =                       0.8888888888888888
+right_l3 =                             0.875
+intake_algea_from_reef =               0.8333333333333334
+right_pyramid_l1 =                     0.625
+score_right_l4_and_intake_algea =      0.0
+score_left_l4_and_intake_algea =       0.0
+SESSION END 
+
+
+
+

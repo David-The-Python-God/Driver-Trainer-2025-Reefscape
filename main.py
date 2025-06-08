@@ -21,9 +21,8 @@ def main(hold_time_range, wait_time_range):
     global time_list, correct_counter, incorrect_counter, correct_actions_dict, incorrect_actions_dict
     running = True
     while running:
-        # action = (random.choice(actions_list)).lower()
-        action = 'climb'
-        
+        action = (random.choice(actions_list)).lower()  # change this line or "testing_list" in methods/config.py if you need to do only certain actions for practice or a test or something
+              
 
         if random.randint(0,5) >= 3:
             l = show_photo(action)
@@ -209,6 +208,10 @@ def main(hold_time_range, wait_time_range):
                     time.sleep(random.uniform(specialized_wait_range[0], specialized_wait_range[1]))    
                     show_correct()
                     print("\033[1;34mLET GO OF THE KEY NOW\033[0m", '\n\n-------------------------------------------------------------------\n')
+                    correct_counter += 1
+                    correct_actions_dict[action] = correct_actions_dict.get(action, 0) + 1  # second value in .get is the default
+                    time_per_action_dict[action] = time_per_action_dict.get(action, 0) + time_spent
+                    time_list.append(time_spent)
 
                 else:
                     print(f"Correct action for {action} was:", second_combo_code_dict.get(action))
