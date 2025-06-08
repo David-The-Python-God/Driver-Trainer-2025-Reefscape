@@ -115,6 +115,27 @@ def show_photo(action):
                             return([event.code, time_before])
         
 
+def display_photo_false():
+    img = Image.open("field_memorization/photos/false.png")
+    img = img.resize((800, 600))  # Resize as needed
+    image = pygame.image.fromstring(img.tobytes(), img.size, img.mode)
 
+    # Initialize and display using pygame
+    os.environ['SDL_VIDEO_WINDOW_POS'] = f"{0},{200}"
+    pygame.init()
+    screen = pygame.display.set_mode((800, 600))
+    pygame.display.set_caption("Photo:")
+    screen.blit(image, (0, 0))
+    pygame.display.flip()
+
+    ctypes.windll.user32.SetWindowPos(pygame.display.get_wm_info()['window'], -1, 0, 0, 0, 0, 0x0001 | 0x0002) # supposed to send image to front
+
+
+    if sys.platform == "win32":
+        hwnd = pygame.display.get_wm_info()['window']
+        ctypes.windll.user32.SetForegroundWindow(hwnd)
+
+    time.sleep(3)
+    
 if __name__ == "__main__":
     print(show_photo("station_intake"))

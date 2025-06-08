@@ -1,0 +1,31 @@
+Name?david first run of f-l 6/7/2025, only running the image to letter
+Average time spent on correct decision = 1.5882990519205729
+
+
+Percentage of decisions correct = 0.9375
+
+
+Correct decisions dict:
+G                                    6
+H                                    6
+L                                    4
+J                                    4
+K                                    4
+F                                    3
+I                                    3
+
+
+ Incorrect actions dict:
+F                                    2
+time per action:
+success rate for decisions dict:
+H =                                    1.0
+J =                                    1.0
+G =                                    1.0
+L =                                    1.0
+K =                                    1.0
+I =                                    1.0
+F =                                    0.6
+
+
+
