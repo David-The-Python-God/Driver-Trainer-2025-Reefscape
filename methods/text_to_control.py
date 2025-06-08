@@ -101,3 +101,32 @@ if __name__ == "__main__" :
 #         print(key, " " * (35 - len(key)), incorrect_actions_dict[key])
 
 
+
+
+""" below code segment is to check if buttons till press but events is only changes in state, 
+                have to use pygame for chekcing inputs or be continuously chekcking whilst waiting"""
+                # action_done = None
+                # for event in events:    # goes through ALL events recorded
+
+                #     if (event.ev_type == "Absolute" or event.ev_type == "Key") and event.state !=0:
+                        
+                #         event_code = event.code.lower()
+                #         if not (event_code in moving_action_codes and event.state < joystick_dead_band_used):  # filter out minor joystick movements
+                        
+                #             if (event_code in trigger_actions and event.state >= trigger_dead_band_used) or (event_code not in trigger_actions): # so triggers must be fully pressed
+
+                #                 print(f"Event detected: {event.ev_type} - {event_code} - {event.state}")
+                #                 action_done = event.code
+                #                 break
+                
+                # if action_done == codes_for_actions_dict.get(action):
+                #     show_correct()
+                #     correct_counter += 1
+                #     correct_actions_dict[action] = correct_actions_dict.get(action, 0) + 1  # second value in .get is the default
+                #     time_list.append(time_spent)
+                
+                # else:
+                #     print("YOU DID NOT WAIT LONG ENOUGH")
+                #     show_wait_longer()
+                #     incorrect_counter += 1
+                #     incorrect_actions_dict[action] = incorrect_actions_dict.get(action, 0) + 1

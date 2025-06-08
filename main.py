@@ -1,13 +1,12 @@
 import random, time, math
 import keyboard
-from methods.config import actions_list, codes_for_actions_dict, show_correct, show_false, show_wait_longer, hold_time_for_actions_dict, non_holding_actions, trigger_actions, moving_action_codes, succeding_actions_dict
+from methods.config import actions_list, testing_list, codes_for_actions_dict, show_correct, show_false, show_wait_longer, second_combo_code_dict, hold_time_for_actions_dict, non_holding_actions, trigger_actions, moving_action_codes, succeding_actions_dict
 from methods.config import joystick_dead_band_used, trigger_dead_band_used
 from inputs import get_gamepad
 
 from methods.text_to_control import text_to_control
 from methods.voice_to_control import voice_to_control
 from methods.photo_to_control import show_photo
-from methods.inputs_test import gamepad_you_there_question_mark
 
 time_list = []
 correct_counter = 0
@@ -22,7 +21,8 @@ def main(hold_time_range, wait_time_range):
     global time_list, correct_counter, incorrect_counter, correct_actions_dict, incorrect_actions_dict
     running = True
     while running:
-        action = (random.choice(actions_list)).lower()
+        # action = (random.choice(actions_list)).lower()
+        action = 'climb'
         
 
         if random.randint(0,5) >= 3:
@@ -91,9 +91,12 @@ def main(hold_time_range, wait_time_range):
 
         if action_done.lower() == codes_for_actions_dict.get(action):
 
-            if action not in non_holding_actions:
-                specialized_wait_range = hold_time_for_actions_dict.get(action, [0, 0])
-                time.sleep(random.uniform(specialized_wait_range[0], specialized_wait_range[1]))    
+            if ((action not in non_holding_actions) and action not in second_combo_code_dict.keys()) or action == 'climb':  # I hate this logic so much a;jqre;j;qgi
+
+                if action != 'climb':
+                    specialized_wait_range = hold_time_for_actions_dict.get(action, [0, 0])
+                    time.sleep(random.uniform(specialized_wait_range[0], specialized_wait_range[1]))    
+                
                 show_correct()
 
                 if action in succeding_actions_dict.keys():
@@ -123,7 +126,7 @@ def main(hold_time_range, wait_time_range):
                                         print("you moved joystick to far whilst going for another action")
                                         time.sleep(0.1)
 
-                                    elif not (event_code == 'abs_rz'):   # because trigger amount fluctuates when at half-press mode so you don't want to accidentally trigger wrong tirgger
+                                    elif not (event_code == 'abs_rz') or action == 'climb':   # because trigger amount fluctuates when at half-press mode so you don't want to accidentally trigger wrong tirgger
                                         print(f"Suceeding event detected: {event.ev_type} - {event_code} - {event.state}")
                                         action_done = event.code
                                         
@@ -136,7 +139,7 @@ def main(hold_time_range, wait_time_range):
 
                     succeding_action = succeding_actions_dict.get(action)
                     if action_done.lower() == codes_for_actions_dict.get(succeding_action):
-                        specialized_wait_range = hold_time_for_actions_dict.get(action, [0, 0])
+                        specialized_wait_range = hold_time_for_actions_dict.get(succeding_action, [0, 0])
                         time.sleep(random.uniform(specialized_wait_range[0], specialized_wait_range[1]))
                         print("\033[1;34mCORRECT SUCCEDING ACTION\033[0m")
                         correct_counter += 1
@@ -150,46 +153,72 @@ def main(hold_time_range, wait_time_range):
                         incorrect_counter += 1
                         incorrect_actions_dict[succeding_action] = incorrect_actions_dict.get(succeding_action, 0) + 1
 
-
+                
                 else:
                     correct_counter += 1
                     correct_actions_dict[action] = correct_actions_dict.get(action, 0) + 1  # second value in .get is the default
                     time_per_action_dict[action] = time_per_action_dict.get(action, 0) + time_spent
                     time_list.append(time_spent)
-
-
-
-
-                """ below code segment is to check if buttons till press but events is only changes in state, 
-                have to use pygame for chekcing inputs or be continuously chekcking whilst waiting"""
-                # action_done = None
-                # for event in events:    # goes through ALL events recorded
-
-                #     if (event.ev_type == "Absolute" or event.ev_type == "Key") and event.state !=0:
-                        
-                #         event_code = event.code.lower()
-                #         if not (event_code in moving_action_codes and event.state < joystick_dead_band_used):  # filter out minor joystick movements
-                        
-                #             if (event_code in trigger_actions and event.state >= trigger_dead_band_used) or (event_code not in trigger_actions): # so triggers must be fully pressed
-
-                #                 print(f"Event detected: {event.ev_type} - {event_code} - {event.state}")
-                #                 action_done = event.code
-                #                 break
-                
-                # if action_done == codes_for_actions_dict.get(action):
-                #     show_correct()
-                #     correct_counter += 1
-                #     correct_actions_dict[action] = correct_actions_dict.get(action, 0) + 1  # second value in .get is the default
-                #     time_list.append(time_spent)
-                
-                # else:
-                #     print("YOU DID NOT WAIT LONG ENOUGH")
-                #     show_wait_longer()
-                #     incorrect_counter += 1
-                #     incorrect_actions_dict[action] = incorrect_actions_dict.get(action, 0) + 1
                 
                 print("\033[1;34mLET GO OF THE KEY NOW\033[0m", '\n\n-------------------------------------------------------------------\n') 
 
+            elif action in second_combo_code_dict:
+                try:
+                    events = get_gamepad()  # listner function, but not in background?
+
+                except Exception:
+                    print("game pad disconnected")
+                    return
+                
+                action_done = None
+
+                events = []
+                while action_done == None:  # wait for the user to press the button
+                    events = []
+                    try:
+                        events = get_gamepad()  # listner function, but not in background?
+
+                    except Exception:
+                        print("game pad disconnected")
+                        return
+
+                    # for event in events:    # goes through ALL events recorded
+
+                    event = events[-1] # saves on latency but doesn't actually remove prior thngs
+                    if (event.ev_type == "Absolute" or event.ev_type == "Key") and event.state !=0:
+                        
+                        event_code = event.code.lower()
+                        if not (event_code in moving_action_codes and event.state <= joystick_dead_band_used):  # filter out minor joystick movements
+                            
+                            if not (event_code in trigger_actions and event.state <= trigger_dead_band_used):
+                                if event_code in moving_action_codes :
+                                    print("you moved joystick to far whilst going for another action")
+                                    time.sleep(0.1)
+
+                                elif event_code != "btn_thumbr": # specifically to not include the combos which in this case use thumbr
+                                    print(f"Event detected: {event.ev_type} - {event_code} - {event.state}")
+                                    action_done = event_code
+                                    
+                                    events = [] # hopefully to clear of old events but that is not how gamepad works anyway so....
+
+                                    break
+                
+
+                if action_done == second_combo_code_dict.get(action):
+                    specialized_wait_range = hold_time_for_actions_dict.get(action, [0, 0])
+                    time.sleep(random.uniform(specialized_wait_range[0], specialized_wait_range[1]))    
+                    show_correct()
+                    print("\033[1;34mLET GO OF THE KEY NOW\033[0m", '\n\n-------------------------------------------------------------------\n')
+
+                else:
+                    print(f"Correct action for {action} was:", second_combo_code_dict.get(action))
+                    show_false()
+                    print('\n-------------------------------------------------------------------\n')
+                    incorrect_counter += 1
+                    incorrect_actions_dict[action] = incorrect_actions_dict.get(action, 0) + 1
+
+                    
+                    
             else:
                 show_correct()
                 print('\n-------------------------------------------------------------------\n')
@@ -201,6 +230,7 @@ def main(hold_time_range, wait_time_range):
         else:
             print(f"Correct action for {action} was:", codes_for_actions_dict.get(action))
             show_false()
+            print('\n-------------------------------------------------------------------\n')
             incorrect_counter += 1
             incorrect_actions_dict[action] = incorrect_actions_dict.get(action, 0) + 1
         

@@ -25,9 +25,9 @@ def show_photo(action):
         r = random.randint(0, 1)  # randomizes which category the image comes from
         
         photo = action + ".jpg"
-        print("directory " , directory_list[1-r]+photo)
+        # print("directory " , directory_list[1-r]+photo)
 
-        print("directory " , directory_list[r]+photo)
+        # print("directory " , directory_list[r]+photo)
         if os.path.exists(directory_list[r]+photo):
             image_path = directory_list[r]+photo
 
@@ -35,7 +35,7 @@ def show_photo(action):
             image_path = directory_list[1-r]+photo
 
         else:
-            print("No image found")
+            print(f"No image found for{action}" + "\n----------------------------------------------\n")
             return
         
         
