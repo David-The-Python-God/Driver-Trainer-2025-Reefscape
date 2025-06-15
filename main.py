@@ -1,6 +1,6 @@
 import random, time, math
 import keyboard
-from methods.config import actions_list, testing_list, codes_for_actions_dict, show_correct, show_false, show_wait_longer, second_combo_code_dict, hold_time_for_actions_dict, non_holding_actions, trigger_actions, moving_action_codes, succeding_actions_dict
+from methods.config import actions_list, all_scores, all_intakes, algea_intake_combo, straight_coral_intakes, straight_coral_scores, horizontal_coral_scores, horizontal_coral_intakes, algea_intakes, algea_scores, testing_list, important_actions, codes_for_actions_dict, show_correct, show_false, show_wait_longer, second_combo_code_dict, hold_time_for_actions_dict, non_holding_actions, trigger_actions, moving_action_codes, succeding_actions_dict
 from methods.config import joystick_dead_band_used, trigger_dead_band_used
 from inputs import get_gamepad
 
@@ -16,12 +16,44 @@ correct_actions_dict = {}
 incorrect_actions_dict = {}
 time_per_action_dict = {}
 
+was_response_false = False # used for action sequence. In case youd o the wrong keybind, it restarts action sequence (like if you miss pickup, you have to do it again)
+
+previous_action = None
+
 def main(hold_time_range, wait_time_range):
 
-    global time_list, correct_counter, incorrect_counter, correct_actions_dict, incorrect_actions_dict
+    global time_list, correct_counter, incorrect_counter, correct_actions_dict, incorrect_actions_dict, previous_action
     running = True
     while running:
-        action = (random.choice(actions_list)).lower()  # change this line or "testing_list" in methods/config.py if you need to do only certain actions for practice or a test or something
+
+        if previous_action and not was_response_false:
+            if previous_action in straight_coral_intakes:
+                action = (random.choice(straight_coral_scores))
+            elif previous_action in horizontal_coral_intakes:
+                action = (random.choice(horizontal_coral_scores))
+            elif previous_action in algea_intakes or previous_action in algea_intake_combo:
+                action = (random.choice(algea_scores))
+            else:
+                action = (random.choice(important_actions)).lower()       # this program is to get user into habit of intake-then-score pattern. 
+
+            if action in algea_intake_combo:
+                previous_action = action
+            else: 
+                previous_action = None 
+                    
+        
+        else:
+            print("Action sequence finished, starting new sequence")
+            action = (random.choice(actions_list)).lower() 
+            if action in all_scores:
+                action = random.choice(all_intakes)
+                previous_action = action
+            
+            elif action in all_intakes:
+                previous_action = action
+
+        # action = (random.choice(important_actions)).lower()  #change to testing_list for new actions being tested, important_list for common actions, and actions_list for all actions.
+        was_response_false = False
               
 
         if random.randint(0,5) >= 3:
@@ -38,7 +70,7 @@ def main(hold_time_range, wait_time_range):
                 text_to_control(action)
 
             else:
-                voice_to_control(action)
+                voice_to_control(action) 
 
             action_done = None
 
@@ -148,6 +180,7 @@ def main(hold_time_range, wait_time_range):
                     
                     else:
                         print("\033[31mINCORRECT SUCCEDING ACTION BUT CORRECT PRECEEDING ACTION\033[0m")
+                        was_response_false = True
                         print(f"Correct action for {succeding_action} was:", codes_for_actions_dict.get(succeding_action))
                         incorrect_counter += 1
                         incorrect_actions_dict[succeding_action] = incorrect_actions_dict.get(succeding_action, 0) + 1
@@ -216,6 +249,7 @@ def main(hold_time_range, wait_time_range):
                 else:
                     print(f"Correct action for {action} was:", second_combo_code_dict.get(action))
                     show_false()
+                    was_response_false = True
                     print('\n-------------------------------------------------------------------\n')
                     incorrect_counter += 1
                     incorrect_actions_dict[action] = incorrect_actions_dict.get(action, 0) + 1
@@ -233,6 +267,7 @@ def main(hold_time_range, wait_time_range):
         else:
             print(f"Correct action for {action} was:", codes_for_actions_dict.get(action))
             show_false()
+            was_response_false = True
             print('\n-------------------------------------------------------------------\n')
             incorrect_counter += 1
             incorrect_actions_dict[action] = incorrect_actions_dict.get(action, 0) + 1
@@ -302,8 +337,11 @@ def stats(filename = "session_stats.txt"):
         # Write the sorted values
         for action, time_per_action in action_avg_times:
             file.write(f"{action} = {' ' * (35 - len(action))} {time_per_action} \n")
+            print(f"{action} = {' ' * (35 - len(action))} {time_per_action}")
+
 
         file.write("\n")
+        print("\n")
 
         file.write("Sucess rate for actions dict:\n")
         print("success rate for actions dict:")

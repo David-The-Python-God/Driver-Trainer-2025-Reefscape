@@ -29,3 +29,56 @@ F =                                    0.6
 
 
 
+david 6/9/25 during cisco. Using all letters
+Average time spent on correct decision = 1.4623781736795005
+Percentage of decisions correct = 0.9871794871794872
+
+Correct decisions dict:
+F                                    12
+C                                    10
+E                                    9
+I                                    8
+H                                    7
+A                                    7
+K                                    6
+L                                    6
+B                                    3
+J                                    3
+D                                    3
+G                                    3
+
+Incorrect actions dict:
+B                                    1
+
+Average time per correct action dict: 
+H =                                    2.124438830784389 
+I =                                    1.8819418847560883 
+K =                                    1.7263411283493042 
+J =                                    1.7154095967610676 
+F =                                    1.61464657386144 
+E =                                    1.3003583749135335 
+G =                                    1.2996822198232014 
+L =                                    1.257839282353719 
+B =                                    1.1662429173787434 
+C =                                    1.0947542667388916 
+D =                                    1.0754012266794841 
+A =                                    0.996385029384068 
+
+Sucess rate for decisions dict:
+J =                                    1.0
+D =                                    1.0
+I =                                    1.0
+F =                                    1.0
+E =                                    1.0
+H =                                    1.0
+C =                                    1.0
+K =                                    1.0
+A =                                    1.0
+L =                                    1.0
+G =                                    1.0
+B =                                    0.75
+SESSION END 
+
+
+
+

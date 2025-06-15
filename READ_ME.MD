@@ -60,10 +60,12 @@ IF something is not working, you want to adjust something, or you do not know ho
 
 
 Created by David Schwarzburg from FRC Team 2910 "Jack In The Bot" to prep for driver practice on 2910 robot "SPECTRE" for offseason 2025 reefscape competition.
-    Pls follow me on github, I have to brag to the other programmers on my team: https://github.com/David-The-Python-God. 
+    PLS FOLLOW ME ON GITHUB, I have to brag to the other programmers on my team: https://github.com/David-The-Python-God. 
    
-Thanks to Sudhir Chebiyam (driver, chief engineer, lead programmer, ABSOLUTE INSPIRATIONAL GOAT) for explaining me the nuances of the keybindings for SPECTRE and thanks to Monishk Illango (subsytem programmer, trogdor programmer) 
-    for tediously explaning structure of controls and being a friend when I did not understand anything at the time.
+Thanks to Sudhir Chebiyam (driver, chief engineer, lead programmer, ABSOLUTE INSPIRATIONAL GOAT) for explaining me the nuances of the keybindings for SPECTRE and thanks to Monishk Illango (subsytem programmer, trogdor programmer) for tediously explaning structure of control code when I did not understand anything about it at the time.
 
 
 PS: I know the code is very messy and slow. It was a quick 1-day prototype meant to help me get driver, it was not meant to be: cross-compatible, maintainable, scalable, clean, optomized, or made in a better programming langauge.
+
+
+https://www.google.com/imgres?q=borat%20very%20nice&imgurl=https%3A%2F%2Fwww.clker.com%2Fcliparts%2F7%2F8%2Fa%2F0%2F1498553633398980412very-nice-borat.hi.png&imgrefurl=https%3A%2F%2Fwww.clker.com%2Fclipart-421295.html&docid=JKkTZwPeiqK_sM&tbnid=_NofTcZftFaQnM&vet=12ahUKEwiqqvyzoOuNAxW-CTQIHWI-FsEQM3oECGEQAA..i&w=521&h=600&hcb=2&ved=2ahUKEwiqqvyzoOuNAxW-CTQIHWI-FsEQM3oECGEQAA

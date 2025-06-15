@@ -1,22 +1,23 @@
               
 logitech_trigger_deadband = 255 # this is completely maxed out
 logitech_joystick_deadband = 1000 # just below 10% of full trigger
-
 xbox_trigger_deadband = 175  # this is because the trigger is set to not go all the way down (full down is 255 like logitech) (also triggers on my xbox elite have different 1/2 down maximums)
 xbox_joystick_deadband = 3500   #around 11% deadband: xbox range is about 3x logitech 32k and very sensitive
 
 joystick_dead_band_used = xbox_joystick_deadband
 trigger_dead_band_used = xbox_trigger_deadband
 
+from itertools import chain
+
+
 
 """
 Acions need to add:
     manual ejects l4-l2 (this is just right+left of that level on the controller)
+    zeroing on the right is for arm  (zeroeing on left is gyro)
+
  """
 
-testing_list = [
-    'climb', 'score_left_l4_and_intake_algea', 'score_right_l4_and_intake_algea', 'score_left_l2_and_intake_algea', 'score_right_l2_and_intake_algea'
-]
 
 actions_list = [
     'left_l4', 'right_l4', 'left_l3', 'right_l3', 'left_l2', 'right_l2',
@@ -24,18 +25,80 @@ actions_list = [
     'go_to_net_position', "go_to_processor_position",
     'intake_coral_from_ground_straight', 'intake_coral_from_ground_horizontal', 'intake_coral_from_station_straight', 
     'intake_algea_from_reef', 'intake_algea_from_human_player', 'intake_algea_from_ground', 'intake_algea_from_mark', # mark
-    'climb', 
-    'switch_auto_scoring_method', 'prematch_check','exit_climb', 'zeroe_arm',
+    'climb',
+    'switch_auto_scoring_method', 'prematch_check','exit_climb',
     'score_left_l4_and_intake_algea', 'score_right_l4_and_intake_algea',
     'score_left_l2_and_intake_algea', 'score_right_l2_and_intake_algea'
 ]
 
-succeding_actions_dict = {  # succeding actions don't need pictures
+testing_list = []
+
+important_actions = [
+    'left_l4', 'right_l4', 'left_l3', 'right_l3', 'left_l2', 'right_l2',
+    'left_l1_base', 'right_l1_base', 'left_pyramid_l1', 'right_pyramid_l1',
+    'go_to_net_position', "go_to_processor_position",
+    'intake_coral_from_ground_straight', 'intake_coral_from_ground_horizontal',
+    'intake_algea_from_reef', 'intake_algea_from_ground',
+    'climb', 
+    'score_left_l4_and_intake_algea', 'score_right_l4_and_intake_algea',
+    'score_left_l2_and_intake_algea', 'score_right_l2_and_intake_algea'
+]
+
+succeding_actions_dict = {  # succeding actions don't need pictures (these are actions that must happen after another action like processor score after processor position)
     'go_to_net_position' : "score_in_net", 
     "go_to_processor_position" : "score_in_processor",
     'go_to_manual_l1' : 'score_manual_l1',
     'climb' : 'slow_drivetrain_whilst_climbing'
 }
+
+
+
+# scoring possibilitis for certain intake actions which allows user to get used to intake-score patterns
+
+algea_intakes = [
+    'intake_algea_from_reef', 
+    'intake_algea_from_ground',
+    'intake_algea_from_mark', 
+    'intake_algea_from_human_player'
+
+    # 'score_left_l4_and_intake_algea', 'score_right_l4_and_intake_algea',
+    # 'score_left_l2_and_intake_algea', 'score_right_l2_and_intake_algea'  
+]
+
+algea_intake_combo = [
+    'score_left_l4_and_intake_algea', 'score_right_l4_and_intake_algea',
+    'score_left_l2_and_intake_algea', 'score_right_l2_and_intake_algea'   # special algea intakes, these ones are both scores for coral and intakes for algea (flow is intake coral, score combo, score algea)
+]
+
+algea_scores = [
+    'go_to_net_position',
+    "go_to_processor_position"
+]
+
+straight_coral_intakes = [
+    'intake_coral_from_ground_straight', 
+    'intake_coral_from_station_straight'
+]
+
+horizontal_coral_intakes = [
+    'intake_coral_from_ground_horizontal'
+]
+
+straight_coral_scores = [
+    'score_left_l4_and_intake_algea', 'score_right_l4_and_intake_algea',
+    'score_left_l2_and_intake_algea', 'score_right_l2_and_intake_algea',
+    'left_l4', 'right_l4', 'left_l3', 'right_l3', 'left_l2', 'right_l2', 
+    'go_to_manual_l1'
+]
+
+horizontal_coral_scores = [
+    'left_l1_base', 'right_l1_base', 
+    'left_pyramid_l1', 'right_pyramid_l1'
+]
+
+all_intakes = straight_coral_intakes + horizontal_coral_intakes + algea_intakes
+
+all_scores = algea_scores + straight_coral_scores + horizontal_coral_scores
 
 images_list = [] # not needed, each image is just named the action
 
@@ -72,7 +135,7 @@ codes_for_actions_dict = {
 
     "prematch_check" : 'abs_hat0x',  #needs secenario picture (funny time)
     'exit_climb' : "abs_hat0y", # techincially this is the same code as pov up even though on seperate buttons but just ignore it in operation
-    'zeroe_arm' : 'btn_start',
+    'zeroe_gyro?' : 'btn_start',
 
 # first part of score-intake combo is right stick and closely after hit th elevel button:  #also all need scenario picture
     'score_left_l4_and_intake_algea' : 'btn_thumbr',
@@ -83,7 +146,7 @@ codes_for_actions_dict = {
 
 }
 
-second_combo_code_dict =  {
+second_combo_code_dict =  {  # actions that require two key inputs for one combined action without a timing needed betweeen keypresses
     'score_left_l4_and_intake_algea' : 'btn_tl',
     'score_right_l4_and_intake_algea' : 'btn_tr',
 
@@ -91,21 +154,31 @@ second_combo_code_dict =  {
     'score_right_l2_and_intake_algea' : 'btn_east'
 }
 
-general_level_holding_time = [1, 1.7]
+general_level_holding_time = [1.1, 1.65]
 hold_time_for_actions_dict = {   # hold times based on practice match vids
-    "left_l4" : general_level_holding_time,
-    "right_l4" : general_level_holding_time, 
-    "left_l3" : general_level_holding_time,     #NEED TO BE MORE SPECIFIC ON LEVEL HOLDING LATER
-    "right_l3" : general_level_holding_time, 
-    "left_l2" : general_level_holding_time,
-    "right_l2" : general_level_holding_time,  
+    
+    #l3 had the most variance among the same side, but l2 is very variant when it comes to front vs back
+    "left_l4" : [1.4, 1.65],
+    "right_l4" : [1.4, 1.65], 
+    "left_l3" : [1.3, 1.6],    
+    "right_l3" : [1.3, 1.6], 
+    "left_l2" : [1.2, 1.6],     # very noticable that back l2 is 0.2 secodns faster than front L2 (without even counting the no-turning bonus with back l2)
+    "right_l2" : [1.2, 1.6],  
+
+    'left_pyramid_l1' : [1.5, 1.75],  
+    'right_pyramid_l1' : [1.5, 1.75],
+    'left_l1_base' : [1.35, 1.5],              # auto L1 increased by ~0.25 seconds than what you might see on camera becuase backing up is part of the l1 movement (although a sometimes optional part)
+    'right_l1_base' : [1.35, 1.5],
+    'go_to_manual_l1' : [1.3, 1.6],  #guestimated
+    'score_manual_l1' : [0.3, 0.6], 
+
     "intake_coral_from_ground_straight" : [0.85, 1.2], 
     'intake_coral_from_ground_horizontal': [0.8, 1],     
     'intake_algea_from_human_player' : [1.3, 1.8], # very subjective time amount need to hold until algea delivered)
-    'intake_coral_from_station_straight' : [1.1, 1.5], # based of of auto only
+    'intake_coral_from_station_straight' : [1.1, 1.5], # time based off of auto only
     'intake_algea_from_ground' : [1.2, 1.6], 
     "intake_algea_from_reef" : [1.4, 1.7], 
-    # "climb" : [2.5, 3.5], # climb is press
+    # "climb" : [2.5, 3.5], # climb is press now??
     'intake_algea_from_mark' : [1.3, 1.5], # Only in one video where processor needs to be scorred twice on our side
     'go_to_net_position' : [0.8, 1.1], 
     "go_to_processor_position" : [0.9, 1.2], 
@@ -113,21 +186,12 @@ hold_time_for_actions_dict = {   # hold times based on practice match vids
     "score_in_net" : [0.2, 0.5], 
     "prematch_check" : [1, 1.5], # subjective time amount (need to hold until ready by technician)
 
-    'left_pyramid_l1' : [1.25, 1.45],  
-    'right_pyramid_l1' : [1.25, 1.45],
-    'left_l1_base' : [0.9, 1.15],           
-    'right_l1_base' : [0.9, 1.15],
-
     'score_left_l4_and_intake_algea' : [2.9, 3.4],
     'score_right_l4_and_intake_algea' : [2.9, 3.4],
-
     'score_left_l2_and_intake_algea' : [2.5, 3],  # couldn't find in video, just a guess of -0.5 from l4 combo
     'score_right_l2_and_intake_algea' : [2,5, 3],
 
-    'go_to_manual_l1' : [1, 1.5], # FIND OUT WAIT TIME
-    'score_manual_l1' : [0.3, 0.6], # find out wait time
-
-    'slow_drivetrain_whilst_climbing' :   [2.5, 3] # about how long it takes to climb 
+    'slow_drivetrain_whilst_climbing' :   [2.5, 3] # about how long it takes to climb from start of climb position
 
     
 }
@@ -146,7 +210,7 @@ key_actions = [ #button
     'go_to_net_position', codes_for_actions_dict.get('go_to_net_position'),
     "score_in_net",
     'left_l1_base', 'right_l1_base',
-    'zeroe_arm', codes_for_actions_dict.get('zeroe_arm'),
+    'zeroe_gyro?', codes_for_actions_dict.get('zeroe_gyro?'),
     'left_pyramid_l1', 'right_pyramid_l1',
 
     'score_left_l4_and_intake_algea', codes_for_actions_dict.get("score_left_l4_and_intake_algea"),
@@ -166,7 +230,7 @@ absolute_actions = [ #trigger/joystick
 non_holding_actions = [ # actions on robot that are instant press 
     'switch_auto_scoring_method', codes_for_actions_dict.get("switch_auto_scoring_method"),
     'exit_climb', codes_for_actions_dict.get('exit_climb'),
-    'zeroe_arm', codes_for_actions_dict.get('zeroe_arm'),
+    'zeroe_gyro?', codes_for_actions_dict.get('zeroe_gyro?'),
     'climb', codes_for_actions_dict.get('climb')
 ]
 

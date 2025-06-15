@@ -138,4 +138,4 @@ def display_photo_false():
     time.sleep(3)
     
 if __name__ == "__main__":
-    print(show_photo("station_intake"))
+    print(show_photo("score_right_l2_and_intake_algea"))
