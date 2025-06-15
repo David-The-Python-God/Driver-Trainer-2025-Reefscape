@@ -10,7 +10,7 @@ Photos:
 
 L2 combo action being done pictures
 
-fiz the main.py structure for scalability(edge cases) and readability(functionify the listner and the false/correct stuff)
+fiz the main.py structure for scalability(edge cases and lists of dictionaries for things like sequence) and readability(functionify the listner and the false/correct stuff) 
 
 make each file modular (if __name__= "__main__" type shit so each file can be run independintly)
 

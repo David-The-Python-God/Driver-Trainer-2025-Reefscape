@@ -39,7 +39,7 @@ important_actions = [
     'go_to_net_position', "go_to_processor_position",
     'intake_coral_from_ground_straight', 'intake_coral_from_ground_horizontal',
     'intake_algea_from_reef', 'intake_algea_from_ground',
-    'climb', 
+    'climb', 'switch_auto_scoring_method', 'intake_algea_from_mark',
     'score_left_l4_and_intake_algea', 'score_right_l4_and_intake_algea',
     'score_left_l2_and_intake_algea', 'score_right_l2_and_intake_algea'
 ]
@@ -88,7 +88,7 @@ straight_coral_scores = [
     'score_left_l4_and_intake_algea', 'score_right_l4_and_intake_algea',
     'score_left_l2_and_intake_algea', 'score_right_l2_and_intake_algea',
     'left_l4', 'right_l4', 'left_l3', 'right_l3', 'left_l2', 'right_l2', 
-    'go_to_manual_l1'
+    # 'go_to_manual_l1' taken out for the important actions practie 
 ]
 
 horizontal_coral_scores = [
@@ -99,6 +99,10 @@ horizontal_coral_scores = [
 all_intakes = straight_coral_intakes + horizontal_coral_intakes + algea_intakes
 
 all_scores = algea_scores + straight_coral_scores + horizontal_coral_scores
+
+all_important_intakes = list(set(all_intakes) & set(important_actions))
+
+all_important_scores = list(set(all_intakes) & set(important_actions))
 
 images_list = [] # not needed, each image is just named the action
 

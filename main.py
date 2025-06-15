@@ -1,6 +1,6 @@
 import random, time, math
 import keyboard
-from methods.config import actions_list, all_scores, all_intakes, algea_intake_combo, straight_coral_intakes, straight_coral_scores, horizontal_coral_scores, horizontal_coral_intakes, algea_intakes, algea_scores, testing_list, important_actions, codes_for_actions_dict, show_correct, show_false, show_wait_longer, second_combo_code_dict, hold_time_for_actions_dict, non_holding_actions, trigger_actions, moving_action_codes, succeding_actions_dict
+from methods.config import actions_list, all_important_intakes, all_important_scores, all_scores, all_intakes, algea_intake_combo, straight_coral_intakes, straight_coral_scores, horizontal_coral_scores, horizontal_coral_intakes, algea_intakes, algea_scores, testing_list, important_actions, codes_for_actions_dict, show_correct, show_false, show_wait_longer, second_combo_code_dict, hold_time_for_actions_dict, non_holding_actions, trigger_actions, moving_action_codes, succeding_actions_dict
 from methods.config import joystick_dead_band_used, trigger_dead_band_used
 from inputs import get_gamepad
 
@@ -44,9 +44,9 @@ def main(hold_time_range, wait_time_range):
         
         else:
             print("Action sequence finished, starting new sequence")
-            action = (random.choice(actions_list)).lower() 
+            action = (random.choice(important_actions)).lower() 
             if action in all_scores:
-                action = random.choice(all_intakes)
+                action = random.choice(all_important_intakes)
                 previous_action = action
             
             elif action in all_intakes:
@@ -55,6 +55,8 @@ def main(hold_time_range, wait_time_range):
         # action = (random.choice(important_actions)).lower()  #change to testing_list for new actions being tested, important_list for common actions, and actions_list for all actions.
         was_response_false = False
               
+
+
 
         if random.randint(0,5) >= 3:
             l = show_photo(action)
@@ -129,6 +131,10 @@ def main(hold_time_range, wait_time_range):
                     time.sleep(random.uniform(specialized_wait_range[0], specialized_wait_range[1]))    
                 
                 show_correct()
+                correct_counter += 1
+                correct_actions_dict[action] = correct_actions_dict.get(action, 0) + 1  # second value in .get is the default
+                time_per_action_dict[action] = time_per_action_dict.get(action, 0) + time_spent
+                time_list.append(time_spent)
 
                 if action in succeding_actions_dict.keys():
                     print("\033[1;34mWAITING FOR KEY PRESS THAT COMPLETES ACTION\033[0m")  
@@ -184,13 +190,6 @@ def main(hold_time_range, wait_time_range):
                         print(f"Correct action for {succeding_action} was:", codes_for_actions_dict.get(succeding_action))
                         incorrect_counter += 1
                         incorrect_actions_dict[succeding_action] = incorrect_actions_dict.get(succeding_action, 0) + 1
-
-                
-                else:
-                    correct_counter += 1
-                    correct_actions_dict[action] = correct_actions_dict.get(action, 0) + 1  # second value in .get is the default
-                    time_per_action_dict[action] = time_per_action_dict.get(action, 0) + time_spent
-                    time_list.append(time_spent)
                 
                 print("\033[1;34mLET GO OF THE KEY NOW\033[0m", '\n\n-------------------------------------------------------------------\n') 
 
