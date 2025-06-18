@@ -1158,3 +1158,388 @@ SESSION END
 
 
 
+david 6/15/25 10 kmin practice important with sequence, fixed go_to+position
+Average time spent on correct decision = 0.7180077556630562                                 #wOOO best stats yet
+Percentage of actions correct = 0.9638242894056848
+
+Correct actions dict:
+go_to_net_position                   45  # seems like since all intakes are favored equally, the algea is called 50 percent of the time with only 2 actions afterwards. may have to increase coral intake amount
+score_in_net                         45
+go_to_processor_position             43
+score_in_processor                   43
+intake_algea_from_mark               31
+intake_algea_from_ground             26
+intake_algea_from_reef               25
+intake_coral_from_ground_straight    24
+intake_coral_from_ground_horizontal  23
+climb                                8
+slow_drivetrain_whilst_climbing      8
+right_pyramid_l1                     8
+switch_auto_scoring_method           7
+left_l1_base                         6
+right_l1_base                        4
+left_pyramid_l1                      4
+left_l2                              3
+left_l3                              3
+right_l2                             3
+right_l4                             3
+score_left_l4_and_intake_algea       3   #low coral score amounts need to be beefed up
+left_l4                              3
+score_right_l2_and_intake_algea      2
+score_left_l2_and_intake_algea       2
+right_l3                             1
+
+Incorrect actions dict:
+intake_algea_from_reef               4
+intake_coral_from_ground_horizontal  3
+intake_algea_from_ground             3
+go_to_processor_position             1
+go_to_net_position                   1
+right_l4                             1
+right_l1_base                        1
+
+Average time per correct action dict: 
+score_right_l2_and_intake_algea =      1.8820544481277466 
+score_left_l4_and_intake_algea =       1.3801147937774658   #more combo practice
+score_left_l2_and_intake_algea =       1.3212443590164185 
+left_l2 =                              1.1656351884206135 
+left_pyramid_l1 =                      1.1200901865959167 
+intake_algea_from_reef =               1.1062092781066895    # i feel like i need more algea ground practice but stats show its fine?
+intake_algea_from_ground =             1.0891167659025927      
+switch_auto_scoring_method =           1.0323183195931571 
+left_l3 =                              1.0247827370961506 
+intake_coral_from_ground_horizontal =  0.9968696884486986 
+climb =                                0.9874996542930603 
+right_l1_base =                        0.9777176976203918 
+intake_coral_from_ground_straight =    0.9537921150525411 
+right_l3 =                             0.9304800033569336 
+intake_algea_from_mark =               0.8675404133335236 
+go_to_processor_position =             0.8102923770283543 
+right_pyramid_l1 =                     0.7993839681148529 
+left_l4 =                              0.7394001483917236 
+right_l4 =                             0.7217210928599039 
+go_to_net_position =                   0.6929935349358453 
+left_l1_base =                         0.514440655708313 
+right_l2 =                             0.36792389551798504 
+slow_drivetrain_whilst_climbing =      0.2880576550960541 
+score_in_net =                         0.18470240698920357 
+score_in_processor =                   0.13845404358797295 
+
+Sucess rate for actions dict:
+intake_algea_from_mark =               1.0
+score_in_processor =                   1.0
+left_pyramid_l1 =                      1.0
+intake_coral_from_ground_straight =    1.0
+left_l1_base =                         1.0
+left_l3 =                              1.0
+score_in_net =                         1.0
+score_right_l2_and_intake_algea =      1.0
+left_l2 =                              1.0
+switch_auto_scoring_method =           1.0
+score_left_l4_and_intake_algea =       1.0
+right_pyramid_l1 =                     1.0
+score_left_l2_and_intake_algea =       1.0
+right_l3 =                             1.0
+right_l2 =                             1.0
+climb =                                1.0
+left_l4 =                              1.0
+slow_drivetrain_whilst_climbing =      1.0
+go_to_net_position =                   0.9782608695652174
+go_to_processor_position =             0.9772727272727273
+intake_algea_from_ground =             0.896551724137931
+intake_coral_from_ground_horizontal =  0.8846153846153846       #random stuff missed. 
+intake_algea_from_reef =               0.8620689655172413
+right_l1_base =                        0.8
+right_l4 =                             0.75
+SESSION END 
+
+
+
+
+david 10 pm 6?/15/25 practice sesh. improtant with sequence
+Average time spent on correct decision = 0.6529361859565358  # new PR!!!
+Percentage of actions correct = 0.9737991266375546
+
+Correct actions dict:
+intake_coral_from_ground_straight    47   # fixed distribution
+go_to_processor_position             26
+score_in_processor                   26
+go_to_net_position                   19
+score_in_net                         19
+intake_algea_from_mark               10
+score_left_l4_and_intake_algea       9
+left_l4                              7
+intake_algea_from_reef               7
+intake_algea_from_ground             6
+score_right_l4_and_intake_algea      6
+intake_coral_from_ground_horizontal  5
+right_l4                             5
+score_right_l2_and_intake_algea      5
+right_l2                             4
+left_pyramid_l1                      3
+left_l2                              3
+left_l3                              3
+score_left_l2_and_intake_algea       3
+switch_auto_scoring_method           3
+climb                                2
+slow_drivetrain_whilst_climbing      2
+left_l1_base                         1
+right_pyramid_l1                     1
+right_l3                             1
+
+Incorrect actions dict:
+intake_coral_from_ground_horizontal  2
+go_to_net_position                   1
+left_l2                              1
+intake_algea_from_ground             1
+intake_coral_from_ground_straight    1
+
+Average time per correct action dict: 
+score_right_l4_and_intake_algea =      1.39836851755778 
+score_left_l2_and_intake_algea =       1.2862287362416585  # combos could use mor ework, but getting better
+score_right_l2_and_intake_algea =      1.1757588386535645 
+climb =                                1.0835309028625488 
+right_pyramid_l1 =                     1.0690319538116455 
+intake_algea_from_reef =               0.9301074913569859 
+right_l2 =                             0.9067597389221191 
+left_l3 =                              0.8958033720652262 
+score_left_l4_and_intake_algea =       0.8506751855214437 
+switch_auto_scoring_method =           0.8199464480082194 
+intake_algea_from_ground =             0.794576366742452 
+right_l4 =                             0.775728702545166 
+left_l2 =                              0.741167147954305 
+intake_algea_from_mark =               0.7374932527542114 
+intake_coral_from_ground_straight =    0.7368978693130168 
+left_pyramid_l1 =                      0.6724329789479574 
+go_to_processor_position =             0.6479438268221341 
+go_to_net_position =                   0.6477331487756026 
+left_l4 =                              0.604567391531808 
+intake_coral_from_ground_horizontal =  0.563719654083252 
+slow_drivetrain_whilst_climbing =      0.2958422899246216 
+right_l3 =                             0.2391526699066162 
+score_in_net =                         0.20780680054112485 
+score_in_processor =                   0.20772059147174543 
+left_l1_base =                         0.019891023635864258 
+
+Sucess rate for actions dict:
+climb =                                1.0
+left_pyramid_l1 =                      1.0
+slow_drivetrain_whilst_climbing =      1.0
+left_l1_base =                         1.0
+switch_auto_scoring_method =           1.0
+right_l3 =                             1.0
+score_right_l2_and_intake_algea =      1.0
+intake_algea_from_mark =               1.0
+left_l4 =                              1.0
+score_in_processor =                   1.0
+right_l2 =                             1.0
+score_in_net =                         1.0
+go_to_processor_position =             1.0
+left_l3 =                              1.0
+right_pyramid_l1 =                     1.0
+right_l4 =                             1.0
+score_left_l2_and_intake_algea =       1.0
+score_right_l4_and_intake_algea =      1.0
+intake_algea_from_reef =               1.0
+score_left_l4_and_intake_algea =       1.0
+intake_coral_from_ground_straight =    0.9791666666666666
+go_to_net_position =                   0.95
+intake_algea_from_ground =             0.8571428571428571
+left_l2 =                              0.75
+intake_coral_from_ground_horizontal =  0.7142857142857143    # just fumbled here
+SESSION END 
+
+
+
+
+david 6/16/25 20 min sesh midnight. important only with sequence.
+Average time spent on correct decision = 0.7346093300326321   #stats are okay but last time were better (Also, climb di dnot show up once? what?)
+Percentage of actions correct = 0.96996996996997
+
+Correct actions dict:
+intake_coral_from_ground_straight    68
+go_to_net_position                   31
+score_in_net                         31
+go_to_processor_position             26
+score_in_processor                   26
+intake_coral_from_ground_horizontal  18
+intake_algea_from_reef               15
+intake_algea_from_ground             13
+left_l2                              10
+intake_algea_from_mark               9
+right_l4                             9
+right_l2                             8
+score_left_l4_and_intake_algea       7
+left_l3                              7    # feel like distributionof scoring straight coral should be more heavily weighted on normal scores, les on combos
+score_left_l2_and_intake_algea       6
+right_pyramid_l1                     6
+left_l4                              5
+score_right_l4_and_intake_algea      5
+right_l3                             5
+right_l1_base                        4
+left_pyramid_l1                      4
+left_l1_base                         4
+switch_auto_scoring_method           3
+score_right_l2_and_intake_algea      3
+
+Incorrect actions dict:
+intake_coral_from_ground_horizontal  4
+score_left_l4_and_intake_algea       2
+intake_algea_from_mark               2
+go_to_processor_position             1
+score_left_l2_and_intake_algea       1
+
+Average time per correct action dict: 
+switch_auto_scoring_method =           1.3797455628712971 
+score_right_l4_and_intake_algea =      1.2553234100341797    #looks to be getting better, but i just meessed up a lot of combos
+score_left_l2_and_intake_algea =       1.241756836573283 
+left_pyramid_l1 =                      1.1403459310531616 
+left_l4 =                              1.1032246589660644 
+score_right_l2_and_intake_algea =      1.0948882897694905 
+intake_algea_from_reef =               1.0787559032440186 
+left_l1_base =                         1.003179907798767 
+right_l1_base =                        1.0022140145301819 
+intake_algea_from_ground =             0.9871269739591159 
+intake_coral_from_ground_horizontal =  0.9795140955183241 # time for horiz pick up and horiz stuff should be lower but don't get as much practice on it.
+right_l2 =                             0.8784514665603638 
+right_l3 =                             0.8696572303771972 
+right_pyramid_l1 =                     0.8397634029388428 
+right_l4 =                             0.8347618844774034 
+score_left_l4_and_intake_algea =       0.8154867036002023 
+intake_coral_from_ground_straight =    0.7703647543402279 
+go_to_processor_position =             0.7517512486531184 
+left_l2 =                              0.73982253074646 
+left_l3 =                              0.6764263766152518 
+go_to_net_position =                   0.6683126880276588 
+intake_algea_from_mark =               0.6024313502841525 
+score_in_net =                         0.23055539592619864 
+score_in_processor =                   0.16912875725672796 
+
+Sucess rate for actions dict:
+right_l1_base =                        1.0
+left_l3 =                              1.0
+left_l4 =                              1.0
+right_l4 =                             1.0
+score_right_l4_and_intake_algea =      1.0
+right_pyramid_l1 =                     1.0
+go_to_net_position =                   1.0
+score_right_l2_and_intake_algea =      1.0
+left_pyramid_l1 =                      1.0
+intake_coral_from_ground_straight =    1.0
+score_in_net =                         1.0
+score_in_processor =                   1.0
+left_l2 =                              1.0
+right_l2 =                             1.0
+left_l1_base =                         1.0
+intake_algea_from_ground =             1.0
+switch_auto_scoring_method =           1.0
+right_l3 =                             1.0
+intake_algea_from_reef =               1.0
+go_to_processor_position =             0.9629629629629629 # wiffed
+score_left_l2_and_intake_algea =       0.8571428571428571
+intake_algea_from_mark =               0.8181818181818182 # don't kno whats up with that
+intake_coral_from_ground_horizontal =  0.8181818181818182   # getting horizontal confused with straight and defaulting to straight.
+score_left_l4_and_intake_algea =       0.7777777777777778 # can't read combos
+SESSION END 
+
+
+
+
+davdi 6/17/25 15 min sesh 11pm. important with sequence. not my best 
+Average time spent on correct decision = 0.6612330500550848
+Percentage of actions correct = 0.9835390946502057                       #i don't know why these stats are cracked, i though i did bad
+
+Correct actions dict:
+intake_coral_from_ground_straight    59
+go_to_net_position                   22
+score_in_net                         22
+go_to_processor_position             18
+score_in_processor                   18
+score_left_l2_and_intake_algea       9
+intake_coral_from_ground_horizontal  9
+intake_algea_from_reef               9
+left_l2                              8
+left_l4                              7
+right_l3                             7
+intake_algea_from_ground             6
+right_l2                             6
+score_right_l2_and_intake_algea      5
+right_l4                             5
+intake_algea_from_mark               4
+left_l3                              4
+score_right_l4_and_intake_algea      4
+score_left_l4_and_intake_algea       4
+switch_auto_scoring_method           3
+left_l1_base                         3
+right_pyramid_l1                     3
+left_pyramid_l1                      1
+right_l1_base                        1
+climb                                1
+slow_drivetrain_whilst_climbing      1
+
+Incorrect actions dict:
+intake_algea_from_ground             1
+go_to_processor_position             1
+intake_coral_from_ground_horizontal  1
+left_pyramid_l1                      1
+
+Average time per correct action dict: 
+right_l1_base =                        1.8563005924224854  #outlier i think, but horizontal scores and algea intake and combos need better speed
+intake_algea_from_reef =               1.263370434443156 
+score_right_l2_and_intake_algea =      1.0997658729553224 
+left_pyramid_l1 =                      1.0607640743255615 
+score_left_l4_and_intake_algea =       1.0411800742149353 
+intake_algea_from_mark =               1.0403420329093933 
+score_left_l2_and_intake_algea =       1.0229574574364557 
+left_l1_base =                         0.9863399664560953 
+right_l2 =                             0.9254827896753947 
+right_pyramid_l1 =                     0.8328415552775065 
+left_l3 =                              0.832033097743988 
+intake_algea_from_ground =             0.8234694401423136 
+right_l3 =                             0.8048933574131557 
+left_l4 =                              0.6898077215467181 
+go_to_processor_position =             0.6770352257622613 
+go_to_net_position =                   0.6732229319485751 
+switch_auto_scoring_method =           0.672866423924764 
+intake_coral_from_ground_straight =    0.6626861863217112 
+intake_coral_from_ground_horizontal =  0.6493182712131076 
+score_right_l4_and_intake_algea =      0.619462788105011 
+right_l4 =                             0.586795711517334 
+left_l2 =                              0.5147382915019989 
+slow_drivetrain_whilst_climbing =      0.29880499839782715 
+climb =                                0.271923303604126 
+score_in_net =                         0.1914736574346369 
+score_in_processor =                   0.15011641714307997 
+
+Sucess rate for actions dict:
+switch_auto_scoring_method =           1.0
+score_in_processor =                   1.0
+climb =                                1.0
+slow_drivetrain_whilst_climbing =      1.0
+right_l4 =                             1.0
+score_right_l2_and_intake_algea =      1.0
+score_left_l2_and_intake_algea =       1.0
+left_l2 =                              1.0
+score_in_net =                         1.0
+right_l1_base =                        1.0
+right_l2 =                             1.0
+intake_algea_from_mark =               1.0
+intake_coral_from_ground_straight =    1.0
+score_right_l4_and_intake_algea =      1.0
+left_l3 =                              1.0
+go_to_net_position =                   1.0
+left_l1_base =                         1.0
+left_l4 =                              1.0
+score_left_l4_and_intake_algea =       1.0
+right_pyramid_l1 =                     1.0
+intake_algea_from_reef =               1.0
+right_l3 =                             1.0
+go_to_processor_position =             0.9473684210526315
+intake_coral_from_ground_horizontal =  0.9                        # confusing intakes for just doing coral straight, might want to train just intakes.
+intake_algea_from_ground =             0.8571428571428571
+left_pyramid_l1 =                      0.5
+SESSION END 
+
+
+
+

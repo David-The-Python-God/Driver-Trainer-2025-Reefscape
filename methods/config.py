@@ -41,7 +41,15 @@ important_actions = [
     'intake_algea_from_reef', 'intake_algea_from_ground',
     'climb', 'switch_auto_scoring_method', 'intake_algea_from_mark',
     'score_left_l4_and_intake_algea', 'score_right_l4_and_intake_algea',
-    'score_left_l2_and_intake_algea', 'score_right_l2_and_intake_algea'
+    'score_left_l2_and_intake_algea', 'score_right_l2_and_intake_algea',
+
+    # to balance out the amount of algea intakes that happen which lead to very few scores wehre as coral intakes lead to many different scores that need to be practiced and they are the main intake action in a match
+    'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight',
+    'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight',
+    'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight',
+    'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight',
+    'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight',
+    'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight'
 ]
 
 succeding_actions_dict = {  # succeding actions don't need pictures (these are actions that must happen after another action like processor score after processor position)
