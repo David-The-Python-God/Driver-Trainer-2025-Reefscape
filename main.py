@@ -18,42 +18,52 @@ time_per_action_dict = {}
 
 was_response_false = False # used for action sequence. In case youd o the wrong keybind, it restarts action sequence (like if you miss pickup, you have to do it again)
 
+mutable_all_actions = actions_list.copy()  # mutable copy of all actions, so you can change it without changing the original list
+
 previous_action = None
 
-def main(hold_time_range, wait_time_range):
+def main(hold_time_range, wait_time_range, do_all_actions_first):
 
     global time_list, correct_counter, incorrect_counter, correct_actions_dict, incorrect_actions_dict, previous_action
     running = True
     while running:
 
-        if previous_action and not was_response_false:
-            if previous_action in straight_coral_intakes:
-                action = (random.choice(straight_coral_scores))
-            elif previous_action in horizontal_coral_intakes:
-                action = (random.choice(horizontal_coral_scores))
-            elif previous_action in algea_intakes or previous_action in algea_intake_combo:
-                action = (random.choice(algea_scores))
-            else:
-                action = (random.choice(important_actions)).lower()       # this program is to get user into habit of intake-then-score pattern. 
+        if do_all_actions_first:
+            action = random.choice(mutable_all_actions).lower()  # choose a random action from the list
+            mutable_all_actions.remove(action)  # remove the action from the list to avoid repetition
+            if not mutable_all_actions:
+                print("moving onto training")
+                do_all_actions_first = False
 
-            if action in algea_intake_combo:
-                previous_action = action
-            else: 
-                previous_action = None 
-                    
-        
         else:
-            print("Action sequence finished, starting new sequence")
-            action = (random.choice(important_actions)).lower() 
-            if action in all_scores:
-                action = random.choice(all_important_intakes)
-                previous_action = action
-            
-            elif action in all_intakes:
-                previous_action = action
+            if previous_action and not was_response_false:
+                if previous_action in straight_coral_intakes:
+                    action = (random.choice(straight_coral_scores))
+                elif previous_action in horizontal_coral_intakes:
+                    action = (random.choice(horizontal_coral_scores))
+                elif previous_action in algea_intakes or previous_action in algea_intake_combo:
+                    action = (random.choice(algea_scores))
+                else:
+                    action = (random.choice(important_actions)).lower()       # this program is to get user into habit of intake-then-score pattern. 
 
-        # action = (random.choice(important_actions)).lower()  #change to testing_list for new actions being tested, important_list for common actions, and actions_list for all actions.
-        was_response_false = False
+                if action in algea_intake_combo:
+                    previous_action = action
+                else: 
+                    previous_action = None 
+                        
+            
+            else:
+                print("Action sequence finished, starting new sequence")
+                action = (random.choice(important_actions)).lower() 
+                if action in all_scores:
+                    action = random.choice(all_important_intakes)
+                    previous_action = action
+                
+                elif action in all_intakes:
+                    previous_action = action
+
+            # action = (random.choice(important_actions)).lower()  #change to testing_list for new actions being tested, important_list for common actions, and actions_list for all actions.
+            was_response_false = False
               
 
 
@@ -380,12 +390,16 @@ if __name__ == "__main__":
         # gamepad_you_there_question_mark()
 
         filename = input("Enter the filename to save stats (default: session_stats.txt): ")
+        do_all_actions_first = input("Do you want to do all actions first? (y/n): ").lower() == 'y'
         if not filename:
             filename = "session_stats.txt"
         elif filename.lower() == "g" or filename.lower() == "guest":
             filename = "guest_stats.txt"
 
-        main([1, 1.7], [0.75, 1.5]) # defualt time randge for holdign button and waiting for action respectively (holding derived from sudhir practice match coral)
+        if do_all_actions_first:
+            print("Doing all actions first, then training")
+
+        main([1, 1.7], [0.75, 1.5], do_all_actions_first) # defualt time randge for holdign button and waiting for action respectively (holding derived from sudhir practice match coral)
         
         # if input("wanna save stats?").lower() == "y":
         stats(filename)
