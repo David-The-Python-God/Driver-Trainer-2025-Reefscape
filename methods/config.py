@@ -25,7 +25,7 @@ actions_list = [
     'go_to_net_position', "go_to_processor_position",
     'intake_coral_from_ground_straight', 'intake_coral_from_ground_horizontal', 'intake_coral_from_station_straight', 
     'intake_algea_from_reef', 'intake_algea_from_human_player', 'intake_algea_from_ground', 'intake_algea_from_mark', # mark
-    'climb',
+    'climb', 'zeroe_gyro', 'zeroe_arm', 
     'switch_auto_scoring_method', 'prematch_check','exit_climb',
     'score_left_l4_and_intake_algea', 'score_right_l4_and_intake_algea',
     'score_left_l2_and_intake_algea', 'score_right_l2_and_intake_algea'
@@ -39,7 +39,7 @@ important_actions = [
     'go_to_net_position', "go_to_processor_position",
     'intake_coral_from_ground_straight', 'intake_coral_from_ground_horizontal',
     'intake_algea_from_reef', 'intake_algea_from_ground',
-    'climb', 'switch_auto_scoring_method', 'intake_algea_from_mark',
+    'climb', 'switch_auto_scoring_method', 
     'score_left_l4_and_intake_algea', 'score_right_l4_and_intake_algea',
     'score_left_l2_and_intake_algea', 'score_right_l2_and_intake_algea',
 
@@ -49,7 +49,10 @@ important_actions = [
     'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight',
     'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight',
     'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight',
-    'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight'
+    'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight',
+    
+    'intake_algea_from_ground','intake_algea_from_ground','intake_algea_from_ground', # for practice
+
 ]
 
 succeding_actions_dict = {  # succeding actions don't need pictures (these are actions that must happen after another action like processor score after processor position)
@@ -97,6 +100,9 @@ straight_coral_scores = [
     'score_left_l2_and_intake_algea', 'score_right_l2_and_intake_algea',
     'left_l4', 'right_l4', 'left_l3', 'right_l3', 'left_l2', 'right_l2', 
     # 'go_to_manual_l1' taken out for the important actions practie 
+
+    'left_l4', 'right_l4', 'left_l3', 'right_l3', 'left_l2', 'right_l2',
+    'left_l4', 'right_l4', 'left_l3', 'right_l3', 'left_l2', 'right_l2'  #    TO BALANCE OUT FOR CORAL SCORING, REMOVE LATER
 ]
 
 horizontal_coral_scores = [
@@ -147,7 +153,9 @@ codes_for_actions_dict = {
 
     "prematch_check" : 'abs_hat0x',  #needs secenario picture (funny time)
     'exit_climb' : "abs_hat0y", # techincially this is the same code as pov up even though on seperate buttons but just ignore it in operation
-    'zeroe_gyro?' : 'btn_start',
+    'zeroe_gyro' : 'btn_start',
+    'zeroe_arm' : 'btn_select',
+
 
 # first part of score-intake combo is right stick and closely after hit th elevel button:  #also all need scenario picture
     'score_left_l4_and_intake_algea' : 'btn_thumbr',
@@ -222,7 +230,8 @@ key_actions = [ #button
     'go_to_net_position', codes_for_actions_dict.get('go_to_net_position'),
     "score_in_net",
     'left_l1_base', 'right_l1_base',
-    'zeroe_gyro?', codes_for_actions_dict.get('zeroe_gyro?'),
+    'zeroe_gyro', codes_for_actions_dict.get('zeroe_gyro'),
+    'zeroe_arm', codes_for_actions_dict.get('zeroe_arm'),
     'left_pyramid_l1', 'right_pyramid_l1',
 
     'score_left_l4_and_intake_algea', codes_for_actions_dict.get("score_left_l4_and_intake_algea"),
@@ -242,7 +251,8 @@ absolute_actions = [ #trigger/joystick
 non_holding_actions = [ # actions on robot that are instant press 
     'switch_auto_scoring_method', codes_for_actions_dict.get("switch_auto_scoring_method"),
     'exit_climb', codes_for_actions_dict.get('exit_climb'),
-    'zeroe_gyro?', codes_for_actions_dict.get('zeroe_gyro?'),
+    'zeroe_gyro', codes_for_actions_dict.get('zeroe_gyro'),
+    'zeroe_arm', codes_for_actions_dict.get('zeroe_arm'),
     'climb', codes_for_actions_dict.get('climb')
 ]
 
