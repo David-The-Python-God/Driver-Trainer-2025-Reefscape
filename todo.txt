@@ -6,16 +6,18 @@ Photos:
 
     pictures random select program for those that have extras in a category 
 
- pcitures from opposite side of driver POv to get us4ed to right/left being flipped
+
+
+ pcitures from opposite side of driver POv to get us4ed to right/left being flipped  and for field memorixation
 
 L2 combo action being done pictures
+
+might want to add program for asking user what distance away from net is good for score from multiple pov
 
 fiz the main.py structure for scalability(edge cases and lists of dictionaries for things like sequence) and readability(functionify the listner and the false/correct stuff) 
 
 make each file modular (if __name__= "__main__" type shit so each file can be run independintly)
 
-add more to memorization program (ID tags, driver POV pictures)
-
 led meanigns incorporation?
 
-put voice on sepereate thread so you can press buttons during voice?
+put voice on sepereate thread so you can press buttons during voice? (this would make previous times differently measured than current times)
