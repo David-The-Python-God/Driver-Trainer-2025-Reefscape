@@ -200,10 +200,11 @@ hold_time_for_actions_dict = {   # hold times based on practice match vids
     "intake_algea_from_reef" : [1.4, 1.7], 
     # "climb" : [2.5, 3.5], # climb is press now??
     'intake_algea_from_mark' : [1.3, 1.5], # Only in one video where processor needs to be scorred twice on our side
-    'go_to_net_position' : [0.8, 1.1], 
+    'go_to_net_position' : [1.15, 1.4],   #increased since original
     "go_to_processor_position" : [0.9, 1.2], 
-    "score_in_processor" : [0.6, 0.8],
-    "score_in_net" : [0.2, 0.5], 
+    "score_in_processor" : [0.6, 0.8],  
+    "score_in_net" : [0.4, 0.6], #icnreased bottom boudnary since original
+
     "prematch_check" : [1, 1.5], # subjective time amount (need to hold until ready by technician)
 
     'score_left_l4_and_intake_algea' : [2.9, 3.4],
