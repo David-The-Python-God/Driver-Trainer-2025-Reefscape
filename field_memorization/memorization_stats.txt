@@ -82,3 +82,114 @@ SESSION END
 
 
 
+david 7/10/2025 3 min practice, pants, no hoodie, on laptop. just basic 2d letter and pole. feel rusty
+Average time spent on correct decision = 1.3871490160624187 #better time but shit accuracy
+Percentage of decisions correct = 0.9375
+
+Correct decisions dict:
+H                                    15
+B                                    11
+F                                    9
+C                                    8
+L                                    8
+D                                    8
+E                                    7
+K                                    7
+J                                    6
+G                                    4
+A                                    4
+I                                    3
+
+Incorrect actions dict:
+D                                    3
+C                                    1
+G                                    1
+K                                    1
+
+Average time per correct action dict: 
+L =                                    1.7917342782020569  # don't understnad why these high, thought i had it onlock, should practice more later.
+I =                                    1.775478998819987 
+D =                                    1.6131821274757385 
+F =                                    1.5781696372561984 
+K =                                    1.5371364184788294 
+G =                                    1.3553398251533508 
+J =                                    1.3111162583033245 
+H =                                    1.2911818186442057 
+E =                                    1.2308326789311 
+C =                                    1.1769796907901764 
+B =                                    1.1591757861050693 
+A =                                    0.9689443707466125 
+
+Sucess rate for decisions dict:
+J =                                    1.0
+H =                                    1.0
+E =                                    1.0
+B =                                    1.0
+F =                                    1.0
+I =                                    1.0
+A =                                    1.0
+L =                                    1.0
+C =                                    0.8888888888888888     #nothing especially bad here
+K =                                    0.875
+G =                                    0.8
+D =                                    0.7272727272727273
+SESSION END 
+
+
+
+
+david7/15/25 2 min brush up. felling shit
+Average time spent on correct decision = 1.2369945867737728
+Percentage of decisions correct = 0.9571428571428572            #actually better than last times
+
+Correct decisions dict:
+G                                    11
+K                                    9
+E                                    8
+C                                    6
+L                                    6
+H                                    5
+F                                    5
+D                                    5
+J                                    4
+I                                    3
+A                                    3
+B                                    2
+
+Incorrect actions dict:
+J                                    1
+K                                    1
+H                                    1
+
+Average time per correct action dict: 
+K =                                    1.7064104080200195 
+J =                                    1.3438966870307922 
+L =                                    1.33376944065094 
+I =                                    1.3054138819376628 
+C =                                    1.2887633244196575 
+B =                                    1.2704126834869385 
+F =                                    1.2355555057525636 
+E =                                    1.1913260221481323 
+H =                                    1.0764355659484863 
+G =                                    1.0300322012467817 
+D =                                    1.0074159622192382 
+A =                                    0.8316985766092936 
+                                                                          #nothing in the individuals in very meaningfull, all random mishapps.
+Sucess rate for decisions dict:
+G =                                    1.0
+E =                                    1.0
+C =                                    1.0
+B =                                    1.0
+L =                                    1.0
+D =                                    1.0
+F =                                    1.0
+I =                                    1.0
+A =                                    1.0
+K =                                    0.9
+H =                                    0.8333333333333334
+J =                                    0.8
+SESSION END 
+
+
+
+
