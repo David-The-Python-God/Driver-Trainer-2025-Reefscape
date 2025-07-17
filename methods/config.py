@@ -82,7 +82,7 @@ algea_intake_combo = [
 ]
 
 algea_scores = [
-    'go_to_net_position',
+    'go_to_net_position', 'go_to_net_position','go_to_net_position','go_to_net_position', #net is more common and in demand
     "go_to_processor_position"
 ]
 
