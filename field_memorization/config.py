@@ -1,12 +1,19 @@
 reef_letters_list = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L']
-training_list = ['F', 'G', 'H', 'I', 'J', 'K', 'L'] #its whichever ones i was struggling on
+training_list = [] #its whichever ones i was struggling on
 
-# reef_location_to_keybind_dict = {} # to much i think, i will build program to assemble letter+level and then differnetiate for keybind
 
 left_letters_list = ["A", "C", "E", "G", "I", "K"] # if in left then go to left levels to score, othewise irght levels to score
 reef_levels_list = ["1 base", "1 top", "2", "3", "4"]
 left_reef_levels_to_score_dict = {"1 base" : "btn_south", "1 top" : "btn_tl", "2" : "btn_south","3" : "abs_z","4" : "btn_tl"}
 right_reef_levels_to_score_dict = {"1 base" : "btn_east", "1 top" : "btn_tr", "2" : "btn_east","3" : "abs_rz","4" : "btn_tr"}
+
+hold_time_for_levels_dict = {
+    "1 base" : [1.35, 1.5], 
+    "1 top" : [1.5, 1.75],
+    "2" : [1.2, 1.6],
+    "3" : [1.3, 1.6],
+    "4" : [1.4, 1.65]
+}
 
 
 

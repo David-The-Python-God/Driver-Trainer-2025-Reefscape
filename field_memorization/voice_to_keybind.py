@@ -22,4 +22,5 @@ def voice_to_control(action):
     print("\033[1;34mVOICE HAS SOUNDED\033[0m")
 
 if __name__ == "__main__":
-    voice_to_control("test action")
+    voice_to_control("test,_action")
+    voice_to_control("C. 1 base")

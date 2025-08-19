@@ -1,5 +1,5 @@
 import sys
-from config import reef_letters_list, show_false, show_correct, training_list
+from config import reef_letters_list, show_false, show_correct, training_list, hold_time_for_levels_dict
 from photo_of_reef_pole_to_letter import display_photo, display_photo_false
 import random, time, math, os, sys, keyboard
 from location_to_keybind import generate_location_to_keybind
@@ -19,7 +19,7 @@ correct_dict = {}
 incorrect_dict = {}
 time_per_action_dict = {}
 
-def main(wait_time_range):
+def main(keyboard_wait_time_range, controller_wait_time_range):
     global time_list, correct_counter, incorrect_counter, correct_dict, incorrect_dict
 
     using_controller = True if input("default: using controller methods") != "n" else False #only 1 method each right now
@@ -31,11 +31,12 @@ def main(wait_time_range):
             l = generate_location_to_keybind() # generate reef location and correct keybind
             reef_location = l[0]
             correct_keybind = l[1]
+            reef_level = l[2]
 
             r = random.randint(0,2) 
             if r == 0:
-                print(f"\033[1;34m{reef_location}\033[0m") 
-            elif r >= 1:                                                      #TEMPORARY, change ==1 later
+                print(f"\033[1;34m{reef_location}\033[0m")  # change to custom asci?
+            elif r >= 1:                                                      #TEMPORARY, change ==1 later once photo is done
                 voice_to_control(reef_location)
             else:
                 pass #photo
@@ -70,17 +71,21 @@ def main(wait_time_range):
 
                             else:  
                                 print(f"Event detected: {event.ev_type} - {event_code} - {event.state}")
-                                action_done = event.code
+                                action_done = event.code.lower() 
                                 
                                 events = [] # hopefully to clear of old events but that is not how gamepad works anyway so....
 
                                 break
             
 
-            
             if action_done == correct_keybind:
                 time_spent = time.time() - time_before
+    
 
+                specialized_wait_range = hold_time_for_levels_dict.get(reef_level, [0, 0])
+                time.sleep(random.uniform(specialized_wait_range[0], specialized_wait_range[1]))      # all actions with reef location are hold
+
+                print(time_spent)
                 show_correct()
                 print('\n-------------------------------------------------------------------\n')
                 correct_counter += 1
@@ -94,6 +99,8 @@ def main(wait_time_range):
                 print('\n-------------------------------------------------------------------\n')
                 incorrect_counter += 1
                 incorrect_dict[reef_location] = incorrect_dict.get(reef_location, 0) + 1
+            
+            time.sleep(random.uniform(controller_wait_time_range[0], controller_wait_time_range[1]))
 
 
         else:
@@ -120,9 +127,10 @@ def main(wait_time_range):
                 incorrect_counter += 1
                 incorrect_dict[reef_location_picked] = incorrect_dict.get(reef_location_picked, 0) + 1
             
+            time.sleep(random.uniform(keyboard_wait_time_range[0], keyboard_wait_time_range[1]))
 
 
-        time.sleep(random.uniform(wait_time_range[0], wait_time_range[1]))
+
 
         if keyboard.is_pressed('esc'):
              running = False
@@ -223,5 +231,5 @@ if __name__ == "__main__":
     if not filename:
         filename = "field_memorization/memorization_stats.txt"
 
-    main([0.25, 0.5])
+    main([0.25, 0.5],  [0.75, 1.5])
     stats(filename)

@@ -13,7 +13,7 @@ def generate_location_to_keybind():
     else:
         correct_keybind = right_reef_levels_to_score_dict.get(reef_level)
 
-    return [reef_letter+" "+reef_level, correct_keybind]
+    return [reef_letter+". "+reef_level, correct_keybind, reef_level]
 
 def location_to_keybind():
     pass
