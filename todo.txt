@@ -1,23 +1,27 @@
 #   junkyard of broken dreams
 
 
+new field memorization training:
+    pcitures from driver Pov (and maybe birds-eye pov) of different scores (especially e-j faces) to get us4ed to right/left being flipped  and for field memorixation
+
+    ~might want to add program for asking user what distance away from net is good for score from multiple pov
+    ~led meanigns incorporation?
+    change false.png in memorizaiton photos to borat very nice but flipped
+
+
+
+
 Photos:
+    L2 combo action being done pictures
+
     extra pictures for things like pickup and score from extra angles to get used to different angles
 
     pictures random select program for those that have extras in a category 
 
 
+main shit: 
+    fiz the main.py structure for scalability(edge cases and lists of dictionaries for things like sequence) and readability(functionify the listner and the false/correct stuff) 
 
- pcitures from opposite side of driver POv to get us4ed to right/left being flipped  and for field memorixation
+    make each file modular and fit that with the scalability(if __name__= "__main__" type shit so each file can be run independintly)
 
-L2 combo action being done pictures
-
-might want to add program for asking user what distance away from net is good for score from multiple pov
-
-fiz the main.py structure for scalability(edge cases and lists of dictionaries for things like sequence) and readability(functionify the listner and the false/correct stuff) 
-
-make each file modular (if __name__= "__main__" type shit so each file can be run independintly)
-
-led meanigns incorporation?
-
-put voice on sepereate thread so you can press buttons during voice? (this would make previous times differently measured than current times)
+    ~put voice on sepereate thread so you can press buttons during voice? (although this would make previous times differently measured than current times)

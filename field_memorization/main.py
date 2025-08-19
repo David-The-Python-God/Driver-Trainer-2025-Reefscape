@@ -1,6 +1,14 @@
-from config import reef_locations_list, show_false, show_correct, training_list
+import sys
+from config import reef_letters_list, show_false, show_correct, training_list
 from photo_of_reef_pole_to_letter import display_photo, display_photo_false
 import random, time, math, os, sys, keyboard
+from location_to_keybind import generate_location_to_keybind
+from inputs import get_gamepad
+from voice_to_keybind import voice_to_control
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))) # for the methods.config that is in a seperate sub-folder
+from methods.config import moving_action_codes,trigger_actions,trigger_dead_band_used,joystick_dead_band_used
+
 
 
 time_list = []
@@ -14,30 +22,106 @@ time_per_action_dict = {}
 def main(wait_time_range):
     global time_list, correct_counter, incorrect_counter, correct_dict, incorrect_dict
 
+    using_controller = True if input("default: using controller methods") != "n" else False #only 1 method each right now
+
     running = True
     while running:
-        reef_location_picked = random.choice(reef_locations_list)
-        
-        data = display_photo(reef_location_picked)
-        reef_letter_inputed = data[0]
-        time_spent = data[1]
-        print(time_spent)
+        if using_controller: 
+            
+            l = generate_location_to_keybind() # generate reef location and correct keybind
+            reef_location = l[0]
+            correct_keybind = l[1]
 
-        if reef_letter_inputed.upper() == reef_location_picked:
-            show_correct()
-            print('\n-------------------------------------------------------------------\n')
-            correct_counter += 1
-            correct_dict[reef_location_picked] = correct_dict.get(reef_location_picked, 0) + 1  # second value in .get is the default
-            time_per_action_dict[reef_location_picked] = time_per_action_dict.get(reef_location_picked, 0) + time_spent
-            time_list.append(time_spent)
+            r = random.randint(0,2) 
+            if r == 0:
+                print(f"\033[1;34m{reef_location}\033[0m") 
+            elif r >= 1:                                                      #TEMPORARY, change ==1 later
+                voice_to_control(reef_location)
+            else:
+                pass #photo
+
+
+            action_done = None
+
+            time_before = time.time()
+
+            events = []
+            while action_done == None:  # wait for the user to press the button
+                events = []
+                try:
+                    events = get_gamepad()  # listner function, but not in background?
+
+                except Exception:
+                    print("game pad disconnected")
+                    return
+
+                # for event in events:    # goes through ALL events recorded
+
+                event = events[-1] # saves on latency but doesn't actually remove prior thngs
+                if (event.ev_type == "Absolute" or event.ev_type == "Key") and event.state !=0:
+                    
+                    event_code = event.code.lower()
+                    if not (event_code in moving_action_codes and event.state <= joystick_dead_band_used):  # filter out minor joystick movements
+                        
+                        if not (event_code in trigger_actions and event.state <= trigger_dead_band_used):
+                            if event_code in moving_action_codes :
+                                print("you moved joystick to far whilst going for another action")
+                                time.sleep(0.1)
+
+                            else:  
+                                print(f"Event detected: {event.ev_type} - {event_code} - {event.state}")
+                                action_done = event.code
+                                
+                                events = [] # hopefully to clear of old events but that is not how gamepad works anyway so....
+
+                                break
+            
+
+            
+            if action_done == correct_keybind:
+                time_spent = time.time() - time_before
+
+                show_correct()
+                print('\n-------------------------------------------------------------------\n')
+                correct_counter += 1
+                correct_dict[reef_location] = correct_dict.get(reef_location, 0) + 1  # second value in .get is the default
+                time_per_action_dict[reef_location] = time_per_action_dict.get(reef_location, 0) + time_spent
+                time_list.append(time_spent)
+                
+            else:
+                print("Correct keybind was:", correct_keybind)
+                show_false()
+                print('\n-------------------------------------------------------------------\n')
+                incorrect_counter += 1
+                incorrect_dict[reef_location] = incorrect_dict.get(reef_location, 0) + 1
+
+
         else:
-            print("Correct letter was:", reef_location_picked)
-            show_false()
-            display_photo_false()
-            print('\n-------------------------------------------------------------------\n')
-            incorrect_counter += 1
-            incorrect_dict[reef_location_picked] = incorrect_dict.get(reef_location_picked, 0) + 1
-        
+                
+            reef_location_picked = random.choice(reef_letters_list)
+            
+            data = display_photo(reef_location_picked)
+            reef_letter_inputed = data[0]
+            time_spent = data[1]
+            print(time_spent)
+
+            if reef_letter_inputed.upper() == reef_location_picked:
+                show_correct()
+                print('\n-------------------------------------------------------------------\n')
+                correct_counter += 1
+                correct_dict[reef_location_picked] = correct_dict.get(reef_location_picked, 0) + 1  # second value in .get is the default
+                time_per_action_dict[reef_location_picked] = time_per_action_dict.get(reef_location_picked, 0) + time_spent
+                time_list.append(time_spent)
+            else:
+                print("Correct letter was:", reef_location_picked)
+                show_false()
+                display_photo_false()
+                print('\n-------------------------------------------------------------------\n')
+                incorrect_counter += 1
+                incorrect_dict[reef_location_picked] = incorrect_dict.get(reef_location_picked, 0) + 1
+            
+
+
         time.sleep(random.uniform(wait_time_range[0], wait_time_range[1]))
 
         if keyboard.is_pressed('esc'):

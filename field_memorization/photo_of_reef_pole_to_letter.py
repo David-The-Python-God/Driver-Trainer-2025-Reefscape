@@ -1,4 +1,4 @@
-from config import reef_locations_list, show_false, show_correct
+from config import reef_letters_list, show_false, show_correct
 import random, time, math, os, sys
 import pygame, ctypes
 from PIL import Image, ExifTags

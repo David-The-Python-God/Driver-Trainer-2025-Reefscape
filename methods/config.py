@@ -130,7 +130,7 @@ codes_for_actions_dict = {
 
     'left_l1_base' : 'btn_south',
     'right_l1_base' : 'btn_east',
-    'left_pyramid_l1' : 'btn_tl',   #RECENTLY CHANGD PYRAMID TO BUMPER KEYBIND DAVID!!!
+    'left_pyramid_l1' : 'btn_tl',   
     'right_pyramid_l1' : 'btn_tr',
     'go_to_manual_l1' : 'btn_north',
     'score_manual_l1' : 'btn_west',
