@@ -3,13 +3,13 @@ training_list = [] #its whichever ones i was struggling on
 
 
 left_letters_list = ["A", "C", "E", "G", "I", "K"] # if in left then go to left levels to score, othewise irght levels to score
-reef_levels_list = ["1 base", "1 top", "2", "3", "4"]
-left_reef_levels_to_score_dict = {"1 base" : "btn_south", "1 top" : "btn_tl", "2" : "btn_south","3" : "abs_z","4" : "btn_tl"}
-right_reef_levels_to_score_dict = {"1 base" : "btn_east", "1 top" : "btn_tr", "2" : "btn_east","3" : "abs_rz","4" : "btn_tr"}
+reef_levels_list = ["1 base", "1 pyramid", "2", "3", "4"]
+left_reef_levels_to_score_dict = {"1 base" : "btn_south", "1 pyramid" : "btn_tl", "2" : "btn_south","3" : "abs_z","4" : "btn_tl"}
+right_reef_levels_to_score_dict = {"1 base" : "btn_east", "1 pyramid" : "btn_tr", "2" : "btn_east","3" : "abs_rz","4" : "btn_tr"}
 
 hold_time_for_levels_dict = {
     "1 base" : [1.35, 1.5], 
-    "1 top" : [1.5, 1.75],
+    "1 pyramid" : [1.5, 1.75],
     "2" : [1.2, 1.6],
     "3" : [1.3, 1.6],
     "4" : [1.4, 1.65]
