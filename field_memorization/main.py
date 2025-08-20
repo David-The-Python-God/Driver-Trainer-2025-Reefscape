@@ -22,7 +22,7 @@ time_per_action_dict = {}
 def main(keyboard_wait_time_range, controller_wait_time_range):
     global time_list, correct_counter, incorrect_counter, correct_dict, incorrect_dict
 
-    using_controller = True if input("default: using controller methods") != "n" else False #only 1 method each right now
+    using_controller = True if input("default: using controller methods") != "n" else False #only 1 method in each controller and keyboard
 
     running = True
     while running:
@@ -77,6 +77,8 @@ def main(keyboard_wait_time_range, controller_wait_time_range):
 
                                 break
             
+
+            reef_location = reef_location[0] # just getting the first letter of the reef location to not clutter stats
 
             if action_done == correct_keybind:
                 time_spent = time.time() - time_before
@@ -233,3 +235,4 @@ if __name__ == "__main__":
 
     main([0.25, 0.5],  [0.75, 1.5])
     stats(filename)
+

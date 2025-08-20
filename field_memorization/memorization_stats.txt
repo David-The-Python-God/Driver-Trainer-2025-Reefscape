@@ -195,3 +195,212 @@ SESSION END
 
 
 
+david 8/19/25 laptop with hoodie and pants, 2 min sesh. feeling ok
+Average time spent on correct decision = 1.2295596142337746   # good, but not anything crazy
+Percentage of decisions correct = 0.9733333333333334
+ 
+Correct decisions dict:
+D                                    10
+A                                    9
+G                                    7
+C                                    7
+E                                    7
+J                                    6
+I                                    6
+F                                    6
+H                                    6
+B                                    4
+L                                    3
+K                                    2
+
+Incorrect actions dict:
+I                                    1
+K                                    1
+
+Average time per correct action dict: 
+L =                                    1.744755506515503 
+B =                                    1.694749355316162 
+J =                                    1.5741513172785442 
+H =                                    1.497578541437785 
+K =                                    1.409137487411499 
+F =                                    1.3569574356079102 
+G =                                    1.237767219543457 
+I =                                    1.1600495179494221 
+C =                                    1.0152812685285295 
+D =                                    1.0140422344207765 
+E =                                    0.9841299397604806 
+A =                                    0.9548023011949327 
+
+Sucess rate for decisions dict:
+G =                                    1.0
+B =                                    1.0
+E =                                    1.0
+F =                                    1.0
+C =                                    1.0
+J =                                    1.0
+H =                                    1.0
+A =                                    1.0
+L =                                    1.0
+D =                                    1.0
+I =                                    0.8571428571428571
+K =                                    0.6666666666666666
+SESSION END 
+
+
+
+
+David, hoodie, pants, tv, controller 8 min sesh
+Average time spent on correct decision = 1.4332453198730946   #INITAL STATS FOR CONTROLLER MEMORIZATION. kinda shit
+Percentage of decisions correct = 0.7529411764705882
+
+Correct decisions dict:
+E. 1 base                            4
+F. 1 top                             4
+K. 4                                 3
+L. 4                                 3
+F. 3                                 3
+L. 3                                 3
+A. 1 top                             3
+C. 1 top                             3
+L. 2                                 2
+J. 3                                 2
+L. 1 top                             2
+B. 4                                 2
+C. 4                                 2
+A. 2                                 2
+D. 3                                 2
+I. 2                                 2
+I. 1 base                            2
+E. 4                                 1
+A. 1 base                            1
+E. 1 top                             1
+A. 3                                 1
+E. 2                                 1
+F. 2                                 1
+D. 2                                 1
+H. 1 top                             1
+G. 1 top                             1
+K. 3                                 1
+B. 3                                 1
+F. 4                                 1
+G. 4                                 1
+H. 3                                 1
+L. 1 base                            1
+D. 4                                 1
+A. 4                                 1
+H. 2                                 1
+F. 1 base                            1
+J. 4                                 1
+
+Incorrect actions dict:
+J. 1 base                            2
+K. 3                                 2
+I. 3                                 2
+F. 1 base                            1
+B. 3                                 1
+B. 1 top                             1
+C. 1 top                             1
+F. 2                                 1
+E. 1 base                            1
+H. 1 base                            1
+H. 3                                 1
+H. 2                                 1
+L. 3                                 1
+L. 2                                 1
+C. 3                                 1
+E. 3                                 1
+E. 2                                 1
+G. 2                                 1
+
+Average time per correct action dict: 
+K. 3 =                                 7.119769334793091 
+C. 4 =                                 3.6408687829971313 
+C. 1 top =                             2.803566296895345 
+E. 1 top =                             2.5249812602996826 
+J. 4 =                                 2.349827527999878 
+A. 1 top =                             2.2170235315958657 
+L. 3 =                                 2.0187741120656333 
+D. 2 =                                 1.9451627731323242 
+E. 2 =                                 1.9222681522369385 
+E. 1 base =                            1.8969827890396118 
+D. 3 =                                 1.6436117887496948 
+H. 2 =                                 1.5716667175292969 
+B. 4 =                                 1.5449941158294678 
+D. 4 =                                 1.3688547611236572 
+L. 4 =                                 1.3438287576039631 
+F. 1 top =                             1.1879098415374756 
+L. 2 =                                 1.1546478271484375 
+F. 3 =                                 1.1412701606750488 
+A. 2 =                                 1.10433030128479 
+G. 4 =                                 1.0651583671569824                        # just random, might wanna seperate by letter
+F. 4 =                                 0.9209270477294922 
+I. 1 base =                            0.9018381834030151 
+K. 4 =                                 0.8805723190307617 
+G. 1 top =                             0.8750724792480469 
+I. 2 =                                 0.7918078899383545 
+B. 3 =                                 0.7424116134643555 
+E. 4 =                                 0.6480450630187988 
+L. 1 top =                             0.5759742259979248 
+J. 3 =                                 0.5349642038345337 
+F. 2 =                                 0.3625156879425049 
+F. 1 base =                            0.32019495964050293 
+A. 3 =                                 0.2691340446472168 
+H. 3 =                                 0.24611806869506836 
+A. 4 =                                 0.0851430892944336 
+H. 1 top =                             0.047716617584228516 
+L. 1 base =                            0.0019822120666503906 
+A. 1 base =                            0.0 
+
+Sucess rate for decisions dict:
+D. 2 =                                 1.0
+I. 1 base =                            1.0
+J. 4 =                                 1.0
+F. 3 =                                 1.0
+G. 4 =                                 1.0
+H. 1 top =                             1.0
+A. 2 =                                 1.0
+F. 1 top =                             1.0
+L. 4 =                                 1.0
+A. 1 base =                            1.0
+L. 1 base =                            1.0
+E. 1 top =                             1.0
+D. 3 =                                 1.0
+D. 4 =                                 1.0
+A. 1 top =                             1.0
+A. 3 =                                 1.0
+C. 4 =                                 1.0
+F. 4 =                                 1.0
+B. 4 =                                 1.0
+L. 1 top =                             1.0
+G. 1 top =                             1.0
+J. 3 =                                 1.0
+A. 4 =                                 1.0
+K. 4 =                                 1.0
+I. 2 =                                 1.0
+E. 4 =                                 1.0
+E. 1 base =                            0.8
+C. 1 top =                             0.75
+L. 3 =                                 0.75
+L. 2 =                                 0.6666666666666666
+H. 3 =                                 0.5
+F. 2 =                                 0.5
+B. 3 =                                 0.5
+E. 2 =                                 0.5
+H. 2 =                                 0.5
+F. 1 base =                            0.5
+K. 3 =                                 0.3333333333333333
+J. 1 base =                            0.0
+C. 3 =                                 0.0
+H. 1 base =                            0.0
+G. 2 =                                 0.0
+E. 3 =                                 0.0
+B. 1 top =                             0.0
+I. 3 =                                 0.0
+SESSION END 
+
+
+
+#IMPLEMENTEED SEPERATION BY LETTER FOR CONTROLLER STATS
+
+
+

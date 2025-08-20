@@ -4,8 +4,6 @@
 new field memorization training:
     pcitures from driver Pov (and maybe birds-eye pov) of different scores (especially e-j faces) to get us4ed to right/left being flipped  and for field memorixation
 
-    keybind memorization based on location - IN PROGRESS
-
     ~might want to add program for asking user what distance away from net is good for score from multiple pov
     ~led meanigns incorporation?
     change false.png in memorizaiton photos to borat very nice but flipped
