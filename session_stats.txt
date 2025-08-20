@@ -3096,3 +3096,89 @@ SESSION END
 
 
 
+david hoodie, pants, tv, important with sequence, no before actions, 13 min sesh, feeling nervous at start but solid at end
+Average time spent on correct decision = 0.7352033161179988
+Percentage of actions correct = 0.9828326180257511                # not bad, but a bit slow
+
+Correct actions dict:
+intake_coral_from_ground_straight    45
+go_to_net_position                   33
+score_in_net                         33
+intake_algea_from_ground             20
+intake_algea_from_reef               15
+intake_coral_from_ground_horizontal  11
+left_l3                              9
+right_l2                             9
+go_to_processor_position             9
+score_in_processor                   9
+left_l4                              5
+right_l4                             5
+right_l3                             5
+score_right_l2_and_intake_algea      4
+left_l2                              3
+right_pyramid_l1                     3
+left_l1_base                         3
+left_pyramid_l1                      2
+score_right_l4_and_intake_algea      2
+right_l1_base                        2
+score_left_l4_and_intake_algea       1
+score_left_l2_and_intake_algea       1
+
+Incorrect actions dict:
+right_pyramid_l1                     1
+go_to_processor_position             1
+intake_coral_from_ground_horizontal  1
+right_l4                             1
+
+Average time per correct action dict: 
+right_l1_base =                        1.2721389532089233 
+intake_algea_from_reef =               1.1815126895904542   #triggger kept getting stuck
+score_right_l4_and_intake_algea =      1.177709698677063 
+score_left_l4_and_intake_algea =       1.1314666271209717 
+score_left_l2_and_intake_algea =       1.1077566146850586 
+right_pyramid_l1 =                     1.0507158438364665 
+left_l3 =                              0.9960520532396104 
+left_l4 =                              0.9831605911254883 
+go_to_processor_position =             0.9746310710906982 
+left_pyramid_l1 =                      0.9574214220046997 
+right_l2 =                             0.8567978011237251 
+left_l1_base =                         0.8224658171335856 
+intake_algea_from_ground =             0.8130379796028138 
+left_l2 =                              0.8051364421844482 
+right_l3 =                             0.8008882999420166 
+go_to_net_position =                   0.7647715337348707 
+intake_coral_from_ground_horizontal =  0.7322993711991743 
+score_right_l2_and_intake_algea =      0.6875555515289307 
+right_l4 =                             0.686353063583374 
+intake_coral_from_ground_straight =    0.6172823588053385 
+score_in_processor =                   0.38699936866760254 
+score_in_net =                         0.36928416020942456 
+
+Sucess rate for actions dict:
+intake_algea_from_ground =             1.0
+left_l2 =                              1.0
+left_l1_base =                         1.0
+score_left_l2_and_intake_algea =       1.0
+go_to_net_position =                   1.0
+right_l1_base =                        1.0
+left_pyramid_l1 =                      1.0
+intake_coral_from_ground_straight =    1.0
+score_in_processor =                   1.0
+left_l4 =                              1.0
+score_in_net =                         1.0
+left_l3 =                              1.0
+right_l3 =                             1.0
+score_right_l4_and_intake_algea =      1.0
+score_left_l4_and_intake_algea =       1.0
+right_l2 =                             1.0
+intake_algea_from_reef =               1.0
+score_right_l2_and_intake_algea =      1.0
+intake_coral_from_ground_horizontal =  0.9166666666666666  # typical
+go_to_processor_position =             0.9
+right_l4 =                             0.8333333333333334  #random
+right_pyramid_l1 =                     0.75
+SESSION END 
+
+
+
+

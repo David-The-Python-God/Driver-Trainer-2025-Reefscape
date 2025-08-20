@@ -404,3 +404,59 @@ SESSION END
 
 
 
+david hoodie, pants, tv, controller , feeling a little rough but okay
+Average time spent on correct decision = 0.7682505278360277
+Percentage of decisions correct = 0.9230769230769231               #could be better, but all right for early try.
+
+Correct decisions dict:
+A                                    12
+E                                    10
+D                                    9
+L                                    9
+B                                    7
+F                                    7
+J                                    6
+C                                    6
+K                                    6
+I                                    5
+G                                    4
+H                                    3
+
+Incorrect actions dict:
+L                                    3
+D                                    2
+E                                    1
+C                                    1
+
+Average time per correct action dict: 
+G =                                    1.1712808012962341    #g taking me a bit, it is left
+K =                                    1.132986068725586 
+F =                                    1.068572691508702 
+J =                                    1.023772398630778 
+L =                                    0.8966730965508355 
+H =                                    0.72233780225118 
+I =                                    0.7066394805908203 
+D =                                    0.6937446329328749 
+A =                                    0.6552795767784119 
+B =                                    0.6041181428091866 
+C =                                    0.5777923266092936 
+E =                                    0.3854455232620239 
+
+Sucess rate for decisions dict:
+A =                                    1.0
+K =                                    1.0
+J =                                    1.0
+H =                                    1.0
+G =                                    1.0
+I =                                    1.0
+B =                                    1.0
+F =                                    1.0
+E =                                    0.9090909090909091
+C =                                    0.8571428571428571  #thought i only got random wrong here, but intersetign its only these 3??
+D =                                    0.8181818181818182
+L =                                    0.75                            #keep confusing l as in left but it is right score
+SESSION END 
+
+
+
+
