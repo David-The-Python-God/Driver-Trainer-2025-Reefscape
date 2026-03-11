@@ -1,4 +1,3 @@
-              
 logitech_trigger_deadband = 255 # this is completely maxed out
 logitech_joystick_deadband = 1000 # just below 10% of full trigger
 xbox_trigger_deadband = 175  # this is because the trigger is set to not go all the way down (full down is 255 like logitech) (also triggers on my xbox elite have different 1/2 down maximums)
@@ -12,9 +11,8 @@ from itertools import chain
 
 
 """
-Acions need to add:
-    manual ejects l4-l2 (this is just right+left of that level on the controller)
-    zeroing on the right is for arm  (zeroeing on left is gyro)
+Actions need to add:
+    
 
  """
 
@@ -33,93 +31,21 @@ actions_list = [
 
 testing_list = []
 
-important_actions = [
-    'left_l4', 'right_l4', 'left_l3', 'right_l3', 'left_l2', 'right_l2',
-    'left_l1_base', 'right_l1_base', 'left_pyramid_l1', 'right_pyramid_l1',
-    'go_to_net_position', "go_to_processor_position",
-    'intake_coral_from_ground_straight', 'intake_coral_from_ground_horizontal',
-    'intake_algea_from_reef', 'intake_algea_from_ground',
-    'climb', 'switch_auto_scoring_method', 
-    'score_left_l4_and_intake_algea', 'score_right_l4_and_intake_algea',
-    'score_left_l2_and_intake_algea', 'score_right_l2_and_intake_algea',
+important_actions = []
 
-    # to balance out the amount of algea intakes that happen which lead to very few scores wehre as coral intakes lead to many different scores that need to be practiced and they are the main intake action in a match
-    'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight',
-    'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight',
-    'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight',
-    'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight',
-    'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight',
-    'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight', 'intake_coral_from_ground_straight',
-    
-    'intake_algea_from_ground','intake_algea_from_ground','intake_algea_from_ground', # for practice
-
-]
-
-succeding_actions_dict = {  # succeding actions don't need pictures (these are actions that must happen after another action like processor score after processor position)
-    'go_to_net_position' : "score_in_net", 
-    "go_to_processor_position" : "score_in_processor",
-    'go_to_manual_l1' : 'score_manual_l1',
-    'climb' : 'slow_drivetrain_whilst_climbing'
-}
+succeding_actions_dict = {} # actions that ALWAYS happen after the other
 
 
+# As scores happen after intake in pick-place, but not nessasarily in shoot
+all_intakes = []
 
-# scoring possibilitis for certain intake actions which allows user to get used to intake-score patterns
-
-algea_intakes = [
-    'intake_algea_from_reef', 
-    'intake_algea_from_ground',
-    'intake_algea_from_mark', 
-    'intake_algea_from_human_player'
-
-    # 'score_left_l4_and_intake_algea', 'score_right_l4_and_intake_algea',
-    # 'score_left_l2_and_intake_algea', 'score_right_l2_and_intake_algea'  
-]
-
-algea_intake_combo = [
-    'score_left_l4_and_intake_algea', 'score_right_l4_and_intake_algea',
-    'score_left_l2_and_intake_algea', 'score_right_l2_and_intake_algea'   # special algea intakes, these ones are both scores for coral and intakes for algea (flow is intake coral, score combo, score algea)
-]
-
-algea_scores = [
-    'go_to_net_position', 'go_to_net_position','go_to_net_position','go_to_net_position', #net is more common and in demand
-    "go_to_processor_position"
-]
-
-straight_coral_intakes = [
-    'intake_coral_from_ground_straight', 
-    'intake_coral_from_station_straight'
-]
-
-horizontal_coral_intakes = [
-    'intake_coral_from_ground_horizontal'
-]
-
-straight_coral_scores = [
-    'score_left_l4_and_intake_algea', 'score_right_l4_and_intake_algea',
-    'score_left_l2_and_intake_algea', 'score_right_l2_and_intake_algea',
-    'left_l4', 'right_l4', 'left_l3', 'right_l3', 'left_l2', 'right_l2', 
-    # 'go_to_manual_l1' taken out for the important actions practie 
-
-    'left_l4', 'right_l4', 'left_l3', 'right_l3', 'left_l2', 'right_l2',
-    'left_l4', 'right_l4', 'left_l3', 'right_l3', 'left_l2', 'right_l2'  #    TO BALANCE OUT FOR CORAL SCORING, REMOVE LATER
-]
-
-horizontal_coral_scores = [
-    'left_l1_base', 'right_l1_base', 
-    'left_pyramid_l1', 'right_pyramid_l1'
-]
-
-all_intakes = straight_coral_intakes + horizontal_coral_intakes + algea_intakes
-
-all_scores = algea_scores + straight_coral_scores + horizontal_coral_scores
+all_scores = []
 
 all_important_intakes = list(set(all_intakes) & set(important_actions))
 
 all_important_scores = list(set(all_intakes) & set(important_actions))
 
-images_list = [] # not needed, each image is just named the action
-
+# kept for reference when keybinding
 codes_for_actions_dict = {
     "left_l4" : "btn_tl", 
     "right_l4" : "btn_tr", 
@@ -157,7 +83,7 @@ codes_for_actions_dict = {
     'zeroe_arm' : 'btn_select',
 
 
-# first part of score-intake combo is right stick and closely after hit th elevel button:  #also all need scenario picture
+# Put first button of combo here.
     'score_left_l4_and_intake_algea' : 'btn_thumbr',
     'score_right_l4_and_intake_algea' : 'btn_thumbr',
 
@@ -166,13 +92,8 @@ codes_for_actions_dict = {
 
 }
 
-second_combo_code_dict =  {  # actions that require two key inputs for one combined action without a timing needed betweeen keypresses
-    'score_left_l4_and_intake_algea' : 'btn_tl',
-    'score_right_l4_and_intake_algea' : 'btn_tr',
-
-    'score_left_l2_and_intake_algea' : 'btn_south',
-    'score_right_l2_and_intake_algea' : 'btn_east'
-}
+# put second button of combo here
+second_combo_code_dict =  {}
 
 general_level_holding_time = [1.1, 1.65]
 hold_time_for_actions_dict = {   # hold times based on practice match vids
@@ -217,7 +138,7 @@ hold_time_for_actions_dict = {   # hold times based on practice match vids
     
 }
 
-key_actions = [ #button
+key_actions = [ #button actions
     'left_l4', codes_for_actions_dict.get('left_l4'), 
     'right_l4',  codes_for_actions_dict.get('right_l4'), 
     'left_l2', codes_for_actions_dict.get('left_l2'),
@@ -241,8 +162,7 @@ key_actions = [ #button
     'score_right_l2_and_intake_algea'
 ]
 
-# POV is in absolute for some reason
-absolute_actions = [ #trigger/joystick
+absolute_actions = [ #trigger/joystick/dpad actions
     'climb', codes_for_actions_dict.get("climb"),
     'exit_climb', 
     'slow_drivetrain_whilst_climbing', 
